@@ -1,0 +1,14 @@
+@{
+    ViewData["Title"] = "Confirm Deletion";
+}
+
+<div class="d-flex justify-content-center align-items-center" style="height: 100vh;">
+    <div class="text-center">
+        <h1 class="display-4">Are you sure you want to delete this contact?</h1>
+        <br>
+        <form method="post" asp-controller="Contact" asp-action="Delete" asp-route-id="@ViewData["ContactId"]">
+            <button type="submit" class="btn btn-danger">Yes, Delete</button>
+            <a asp-controller="Contact" asp-action="Index" class="btn btn-secondary">Cancel</a>
+        </form>
+    </div>
+</div>
