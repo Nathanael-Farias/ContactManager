@@ -14,6 +14,7 @@ namespace AuthSystem.Data
             
         }
         public DbSet<AuthSystem.Models.ContactModel> Contacts { get; set; }
+        public DbSet<AuthSystem.Models.UserModel> Users { get; set; }
 
         
     }

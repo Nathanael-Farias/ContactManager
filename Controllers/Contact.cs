@@ -1,23 +1,24 @@
-using System;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.Extensions.Logging;
+using AuthSystem.Models;
+using AuthSystem.Repository;
 
 namespace AuthSystem.Controllers
 {
     [Route("contact")]
-    public class Contact : Controller
+    public class ContactController : Controller
     {
-        private readonly ILogger<Contact> _logger;
+        private readonly IContactRepository _contactRepository;
 
-        public Contact(ILogger<Contact> logger)
+        public ContactController(IContactRepository contactRepository)
         {
-            _logger = logger;
+            _contactRepository = contactRepository;
         }
 
         [HttpGet("")]
-        public IActionResult Index()
+        public async Task<IActionResult> Index()
         {
-            return View();
+            var contacts = await _contactRepository.GetAllContactsAsync();
+            return View(contacts);
         }
 
         [HttpGet("create")]
@@ -27,41 +28,79 @@ namespace AuthSystem.Controllers
         }
 
         [HttpPost("create")]
-        public IActionResult CreatePost()
+        public async Task<IActionResult> CreatePost(ContactModel contact)
         {
-            return RedirectToAction("Index");
+            if (ModelState.IsValid)
+            {
+                await _contactRepository.AddContactAsync(contact);
+                return RedirectToAction("Index");
+            }
+            return View(contact);
         }
 
         [HttpGet("edit/{id}")]
-        public IActionResult Edit(int id)
+        public async Task<IActionResult> Edit(int id)
         {
-            return View();
+            var contact = await _contactRepository.GetContactByIdAsync(id);
+
+            if (contact == null)
+            {
+                return NotFound();
+            }
+
+            return View(contact);
         }
 
         [HttpPost("edit/{id}")]
-        public IActionResult EditPost(int id)
+        public async Task<IActionResult> Edit(int id, ContactModel contact)
         {
+            if (id != contact.Id)
+            {
+                return BadRequest();
+            }
+
+            var existingContact = await _contactRepository.GetContactByIdAsync(id);
+            if (existingContact == null)
+            {
+                return NotFound();
+            }
+
+            existingContact.Name = contact.Name;
+            existingContact.Email = contact.Email;
+            existingContact.Phone = contact.Phone;
+
+            await _contactRepository.UpdateContactAsync(existingContact);
+
             return RedirectToAction("Index");
         }
 
         [HttpGet("delete/{id}")]
-        public IActionResult DeleteConfirmation(int id)
+        public async Task<IActionResult> DeleteConfirmation(int id)
         {
-            ViewData["ContactId"] = id;
-            return View();
+            var contact = await _contactRepository.GetContactByIdAsync(id);
+
+            if (contact == null)
+            {
+                return NotFound();
+            }
+
+            ViewData["Contact"] = contact;
+            return View(contact);
         }
 
         [HttpPost("delete/{id}")]
-        public IActionResult Delete(int id)
+        public async Task<IActionResult> Delete(int id)
         {
-            return RedirectToAction("Index");
-        }
+            var contact = await _contactRepository.GetContactByIdAsync(id);
 
-        [Route("error")]
-        [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
-        public IActionResult Error()
-        {
-            return View("Error");
+            if (contact == null)
+            {
+                return NotFound();
+            }
+
+            await _contactRepository.DeleteContactAsync(id);
+
+            return RedirectToAction("Index");
         }
     }
 }

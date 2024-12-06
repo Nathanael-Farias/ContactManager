@@ -1,6 +1,11 @@
+@model IEnumerable<AuthSystem.Models.ContactModel>
+
 @{
     ViewData["Title"] = "Contact list";
 }
+
+
+
 
 <div class="text-center">
     <br>
@@ -12,47 +17,29 @@
         </a>
     </div>
 
-    <table class="table table-striped">
-        <thead>
+<table id="table-contacts" class="table table-striped">
+    <thead>
+        <tr>
+            <th scope="col">#</th>
+            <th scope="col">Name</th>
+            <th scope="col">Email</th>
+            <th scope="col">Number</th>
+            <th scope="col">Actions</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var contact in Model)
+        {
             <tr>
-                <th scope="col">#</th>
-                <th scope="col">Name</th>
-                <th scope="col">Email</th>
-                <th scope="col">Number</th>
-                <th scope="col">Actions</th>
-            </tr>
-        </thead>
-        <tbody>
-            <tr>
-                <th scope="row">1</th>
-                <td>John</td>
-                <td>Doe@gmail.com</td>
-                <td>43 522552422</td>
+                <th scope="row">@contact.Id</th>
+                <td>@contact.Name</td>
+                <td>@contact.Email</td>
+                <td>@contact.Phone</td>
                 <td>
-                    <a asp-controller="Contact" asp-action="Edit" asp-route-id="1" class="btn btn-primary btn-sm">Edit</a>
-                    <a asp-controller="Contact" asp-action="DeleteConfirmation" asp-route-id="1" class="btn btn-danger btn-sm" onclick="return confirm('Are you sure you want to delete this contact?');">Delete</a>
+                    <a asp-controller="Contact" asp-action="Edit" asp-route-id="@contact.Id" class="btn btn-primary btn-sm">Edit</a>
+                    <a asp-controller="Contact" asp-action="DeleteConfirmation" asp-route-id="@contact.Id" class="btn btn-danger btn-sm" onclick="return confirm('Are you sure you want to delete this contact?');">Delete</a>
                 </td>
             </tr>
-            <tr>
-                <th scope="row">2</th>
-                <td>Alice</td>
-                <td>Smith@gmail.com</td>
-                <td>43 62212422</td>
-                <td>
-                    <a asp-controller="Contact" asp-action="Edit" asp-route-id="2" class="btn btn-primary btn-sm">Edit</a>
-                    <a asp-controller="Contact" asp-action="DeleteConfirmation" asp-route-id="2" class="btn btn-danger btn-sm" onclick="return confirm('Are you sure you want to delete this contact?');">Delete</a>
-                </td>
-            </tr>
-            <tr>
-                <th scope="row">3</th>
-                <td>Bob</td>
-                <td>Johnson@gmail.com</td>
-                <td>23 243526226</td>
-                <td>
-                    <a asp-controller="Contact" asp-action="Edit" asp-route-id="3" class="btn btn-primary btn-sm">Edit</a>
-                    <a asp-controller="Contact" asp-action="DeleteConfirmation" asp-route-id="3" class="btn btn-danger btn-sm" onclick="return confirm('Are you sure you want to delete this contact?');">Delete</a>
-                </td>
-            </tr>
-        </tbody>
-    </table>
-</div>
+        }
+    </tbody>
+</table>
