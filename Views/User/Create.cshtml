@@ -2,22 +2,22 @@
 
 <h2>Create User</h2>
 
-<form id="createUserForm" method="post" onsubmit="return validateForm()">
+<form id="createUserForm" method="post">
     <div class="form-group">
         <label for="Nome">Name</label>
-        <input type="text" class="form-control" id="Nome" name="Nome" value="Enter your name here" onfocus="if(this.value=='Enter your name here') this.value='';" onblur="if(this.value=='') this.value='Enter your name here';" required />
+        <input type="text" class="form-control" id="Nome" name="Nome" placeholder="Enter your name here" required />
     </div>
     <div class="form-group">
         <label for="Email">Email</label>
-        <input type="email" class="form-control" id="Email" name="Email" value="Enter your email here" onfocus="if(this.value=='Enter your email here') this.value='';" onblur="if(this.value=='') this.value='Enter your email here';" required />
+        <input type="email" class="form-control" id="Email" name="Email" placeholder="Enter your email here" required />
     </div>
     <div class="form-group">
         <label for="Login">Login</label>
-        <input type="text" class="form-control" id="Login" name="Login" value="Enter your login here" onfocus="if(this.value=='Enter your login here') this.value='';" onblur="if(this.value=='') this.value='Enter your login here';" required />
+        <input type="text" class="form-control" id="Login" name="Login" placeholder="Enter your login here" required />
     </div>
     <div class="form-group">
         <label for="Password">Password</label>
-        <input type="password" class="form-control" id="Password" name="Password" value="Enter your password here" onfocus="if(this.value=='Enter your password here') this.value='';" onblur="if(this.value=='') this.value='Enter your password here';" required />
+        <input type="password" class="form-control" id="Password" name="Password" placeholder="Enter your password here" required />
         <input type="checkbox" id="showPassword" onclick="togglePasswordVisibility()"> Show Password
         <div id="passwordValidation" class="password-validation"></div>
     </div>
@@ -33,40 +33,61 @@
     <button type="submit" class="btn btn-primary">Create</button>
 </form>
 
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
 <script>
-function togglePasswordVisibility() {
-    var passwordField = document.getElementById("Password");
-    var checkbox = document.getElementById("showPassword");
-
-    if (checkbox.checked) {
-        passwordField.type = "text"; 
-    } else {
-        passwordField.type = "password"; 
-    }
-}
-
-function validateForm() {
-    var password = document.getElementById('Password').value;
-    var validationMessage = document.getElementById('passwordValidation');
-
-    var regex = /^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{8,}$/;
-
-    if (!regex.test(password)) {
-        validationMessage.textContent = "Password must be at least 8 characters long and include letters and numbers.";
-        validationMessage.style.color = "red";
-        return false; 
+    
+    function togglePasswordVisibility() {
+        var passwordField = document.getElementById("Password");
+        passwordField.type = passwordField.type === "password" ? "text" : "password";
     }
 
     
-    var requiredFields = document.querySelectorAll('input[required], select[required]');
-    for (var i = 0; i < requiredFields.length; i++) {
-        var fieldValue = requiredFields[i].value.trim();
-        if (fieldValue === '' || fieldValue === requiredFields[i].defaultValue) {
-            alert('Please fill all required fields.');
-            return false; // 
-        }
-    }
+    let form = document.getElementById("createUserForm");
+    let nomeInput = document.getElementById("Nome");
+    let emailInput = document.getElementById("Email");
+    let loginInput = document.getElementById("Login");
+    let passwordInput = document.getElementById("Password");
+    let passwordValidation = document.getElementById("passwordValidation");
 
-    return true; 
-}
+    form.addEventListener("submit", (e) => {
+       
+        const passwordRegex = /^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{8,}$/;
+        if (!passwordRegex.test(passwordInput.value.trim())) {
+            passwordValidation.textContent = "Password must be at least 8 characters long and include letters and numbers.";
+            passwordValidation.style.color = "red";
+            e.preventDefault();
+            return;
+        } else {
+            passwordValidation.textContent = ""; 
+        }
+
+        
+        if (
+            nomeInput.value.trim() === "" ||
+            emailInput.value.trim() === "" ||
+            loginInput.value.trim() === "" ||
+            passwordInput.value.trim() === ""
+        ) {
+            Swal.fire({
+                icon: "error",
+                title: "Oops...",
+                text: "Please fill all required fields correctly!",
+            });
+            e.preventDefault();
+            return;
+        }
+
+        
+        e.preventDefault(); 
+        Swal.fire({
+            icon: "success",
+            title: "User created!",
+            text: "The user has been successfully created.",
+        }).then((result) => {
+            if (result.isConfirmed) {
+                form.submit();
+            }
+        });
+    });
 </script>

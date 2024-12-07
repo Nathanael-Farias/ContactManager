@@ -38,7 +38,7 @@ namespace AuthSystem.Controllers
             return View(contact);
         }
 
-        [HttpGet("edit/{id}")]
+                [HttpGet("edit/{id}")]
         public async Task<IActionResult> Edit(int id)
         {
             var contact = await _contactRepository.GetContactByIdAsync(id);
@@ -48,7 +48,8 @@ namespace AuthSystem.Controllers
                 return NotFound();
             }
 
-            return View(contact);
+            
+            return View("Edit", contact);
         }
 
         [HttpPost("edit/{id}")]
@@ -71,24 +72,15 @@ namespace AuthSystem.Controllers
 
             await _contactRepository.UpdateContactAsync(existingContact);
 
+            
+            TempData["SuccessMessage"] = "Contact updated successfully!";
+
+            
             return RedirectToAction("Index");
         }
 
-        [HttpGet("delete/{id}")]
-        public async Task<IActionResult> DeleteConfirmation(int id)
-        {
-            var contact = await _contactRepository.GetContactByIdAsync(id);
 
-            if (contact == null)
-            {
-                return NotFound();
-            }
-
-            ViewData["Contact"] = contact;
-            return View(contact);
-        }
-
-        [HttpPost("delete/{id}")]
+                                [HttpGet("delete/{id}")]
         public async Task<IActionResult> Delete(int id)
         {
             var contact = await _contactRepository.GetContactByIdAsync(id);
@@ -98,9 +90,33 @@ namespace AuthSystem.Controllers
                 return NotFound();
             }
 
-            await _contactRepository.DeleteContactAsync(id);
-
-            return RedirectToAction("Index");
+            
+            ViewData["Contact"] = contact;
+            return View(contact);
         }
+
+        [HttpPost("delete/{id}")]
+                public async Task<IActionResult> DeleteConfirm(int id)
+                {
+                    var contact = await _contactRepository.GetContactByIdAsync(id);
+                    if (contact == null)
+                    {
+                        return NotFound();
+                    }
+
+                    await _contactRepository.DeleteContactAsync(id);
+
+                    
+                    TempData["SuccessMessage"] = "Contato deletado com sucesso!";
+
+                    
+                    return RedirectToAction("Index");
+                }
     }
 }
+
+
+
+
+
+    

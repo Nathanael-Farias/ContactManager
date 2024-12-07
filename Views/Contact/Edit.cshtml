@@ -1,62 +1,58 @@
-@model AuthSystem.Models.UserModel
+@model AuthSystem.Models.ContactModel
 
-<h2>Create User</h2>
+<h2>Edit Contact</h2>
 
-<form id="createUserForm" method="post" onsubmit="return validateForm()">
+<form id="editContactForm" method="post">
+    <input type="hidden" name="Id" value="@Model.Id" />
+
     <div class="form-group">
-        <label for="Nome">Name</label>
-        <input type="text" class="form-control" id="Nome" name="Nome" value="Enter your name here" onfocus="if(this.value=='Enter your name here') this.value='';" onblur="if(this.value=='') this.value='Enter your name here';" required />
+        <label for="Name">Name</label>
+        <input type="text" class="form-control" id="Name" name="Name" value="@Model.Name" required />
     </div>
     <div class="form-group">
         <label for="Email">Email</label>
-        <input type="email" class="form-control" id="Email" name="Email" value="Enter your email here" onfocus="if(this.value=='Enter your email here') this.value='';" onblur="if(this.value=='') this.value='Enter your email here';" required />
+        <input type="email" class="form-control" id="Email" name="Email" value="@Model.Email" required />
     </div>
     <div class="form-group">
-        <label for="Login">Login</label>
-        <input type="text" class="form-control" id="Login" name="Login" value="Enter your login here" onfocus="if(this.value=='Enter your login here') this.value='';" onblur="if(this.value=='') this.value='Enter your login here';" required />
+        <label for="Phone">Phone</label>
+        <input type="text" class="form-control" id="Phone" name="Phone" value="@Model.Phone" required />
     </div>
-    <div class="form-group">
-        <label for="Password">Password</label>
-        <input type="password" class="form-control" id="Password" name="Password" value="Enter your password here" onfocus="if(this.value=='Enter your password here') this.value='';" onblur="if(this.value=='') this.value='Enter your password here';" required />
-        <input type="checkbox" id="showPassword" onclick="togglePasswordVisibility()"> Show Password
-        <div id="passwordValidation" class="password-validation"></div>
-    </div>
-    <br>
-    <div class="form-group">
-        <label for="Profile">Profile</label>
-        <select class="form-control" id="Profile" name="Profile" required>
-            <option value="1">Admin</option>
-            <option value="2">User</option>
-        </select>
-    </div>
-    <br>
-    <button type="submit" class="btn btn-primary">Create</button>
+
+    <button type="submit" class="btn btn-primary">Update</button>
 </form>
 
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
 <script>
-function togglePasswordVisibility() {
-    var passwordField = document.getElementById("Password");
-    var checkbox = document.getElementById("showPassword");
+    let form = document.getElementById("editContactForm");
+    let nameInput = document.getElementById("Name");
+    let emailInput = document.getElementById("Email");
+    let phoneInput = document.getElementById("Phone");
 
-    if (checkbox.checked) {
-        passwordField.type = "text"; 
-    } else {
-        passwordField.type = "password"; 
-    }
-}
-
-function validateForm() {
-    var requiredFields = document.querySelectorAll('input[required], select[required]');
-    for (var i = 0; i < requiredFields.length; i++) {
-        var fieldValue = requiredFields[i].value.trim();
-        var defaultValue = requiredFields[i].defaultValue;
-
-        if (fieldValue === '' || fieldValue === defaultValue) {
-            alert('Please fill all required fields.');
-            return false; 
+    form.addEventListener("submit", (e) => {
+        
+        if (nameInput.value.trim() === "" ||
+            emailInput.value.trim() === "" ||
+            phoneInput.value.trim() === "") {
+            e.preventDefault(); 
+            Swal.fire({
+                icon: "error",
+                title: "Oops...",
+                text: "Please fill all required fields correctly!",
+            });
+            return;
         }
-    }
 
-    return true; 
-}
+      
+        e.preventDefault(); 
+        Swal.fire({
+            icon: "success",
+            title: "Contact updated!",
+            text: "The contact has been successfully updated.",
+        }).then((result) => {
+            if (result.isConfirmed) {
+                form.submit(); 
+            }
+        });
+    });
 </script>
