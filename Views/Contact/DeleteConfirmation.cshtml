@@ -1,19 +1,19 @@
-@model AuthSystem.Models.ContactModel
+@model AuthSystem.Models.UserModel
 
 @{
     ViewData["Title"] = "Confirm Deletion";
 }
 
 <h1>Confirm Deletion</h1>
-<p>Are you sure you want to delete the following contact?</p>
+<p>Are you sure you want to delete the following user?</p>
 
 <div>
-    <strong>Name:</strong> @Model.Name <br />
+    <strong>Name:</strong> @Model.Nome <br />
     <strong>Email:</strong> @Model.Email <br />
-    <strong>Phone:</strong> @Model.Phone
+    <strong>Login:</strong> @Model.Login
 </div>
 
-<form asp-action="Delete" asp-route-id="@Model.Id" method="post">
+<form asp-action="DeleteConfirmed" asp-route-id="@Model.Id" method="post">
     <button type="submit" class="btn btn-danger">Yes, Delete</button>
-    <a href="@Url.Action("Index", "Contact")" class="btn btn-secondary">Cancel</a>
+    <a href="@Url.Action("Index", "User")" class="btn btn-secondary">Cancel</a>
 </form>

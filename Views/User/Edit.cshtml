@@ -1,23 +1,23 @@
 @model AuthSystem.Models.UserModel
 
-<h2>Create User</h2>
+<h2>Edit User</h2>
 
-<form id="createUserForm" method="post" onsubmit="return validateForm()">
+<form id="editUserForm" method="post" onsubmit="return validateForm()">
     <div class="form-group">
         <label for="Nome">Name</label>
-        <input type="text" class="form-control" id="Nome" name="Nome" value="Enter your name here" onfocus="if(this.value=='Enter your name here') this.value='';" onblur="if(this.value=='') this.value='Enter your name here';" required />
+        <input type="text" class="form-control" id="Nome" name="Nome" value="@Model.Nome" onfocus="if(this.value=='Enter your name here') this.value='';" onblur="if(this.value=='') this.value='Enter your name here';" required />
     </div>
     <div class="form-group">
         <label for="Email">Email</label>
-        <input type="email" class="form-control" id="Email" name="Email" value="Enter your email here" onfocus="if(this.value=='Enter your email here') this.value='';" onblur="if(this.value=='') this.value='Enter your email here';" required />
+        <input type="email" class="form-control" id="Email" name="Email" value="@Model.Email" onfocus="if(this.value=='Enter your email here') this.value='';" onblur="if(this.value=='') this.value='Enter your email here';" required />
     </div>
     <div class="form-group">
         <label for="Login">Login</label>
-        <input type="text" class="form-control" id="Login" name="Login" value="Enter your login here" onfocus="if(this.value=='Enter your login here') this.value='';" onblur="if(this.value=='') this.value='Enter your login here';" required />
+        <input type="text" class="form-control" id="Login" name="Login" value="@Model.Login" onfocus="if(this.value=='Enter your login here') this.value='';" onblur="if(this.value=='') this.value='Enter your login here';" required />
     </div>
     <div class="form-group">
         <label for="Password">Password</label>
-        <input type="password" class="form-control" id="Password" name="Password" value="Enter your password here" onfocus="if(this.value=='Enter your password here') this.value='';" onblur="if(this.value=='') this.value='Enter your password here';" required />
+        <input type="password" class="form-control" id="Password" name="Password" value="@Model.Password" onfocus="if(this.value=='Enter your password here') this.value='';" onblur="if(this.value=='') this.value='Enter your password here';" required />
         <input type="checkbox" id="showPassword" onclick="togglePasswordVisibility()"> Show Password
         <div id="passwordValidation" class="password-validation"></div>
     </div>
@@ -30,7 +30,7 @@
         </select>
     </div>
     <br>
-    <button type="submit" class="btn btn-primary">Create</button>
+    <button type="submit" class="btn btn-primary">Save</button>
 </form>
 
 <script>
@@ -49,9 +49,8 @@ function validateForm() {
     var requiredFields = document.querySelectorAll('input[required], select[required]');
     for (var i = 0; i < requiredFields.length; i++) {
         var fieldValue = requiredFields[i].value.trim();
-        var defaultValue = requiredFields[i].defaultValue;
 
-        if (fieldValue === '' || fieldValue === defaultValue) {
+        if (fieldValue === '') {
             alert('Please fill all required fields.');
             return false; 
         }

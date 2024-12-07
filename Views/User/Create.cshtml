@@ -46,14 +46,24 @@ function togglePasswordVisibility() {
 }
 
 function validateForm() {
+    var password = document.getElementById('Password').value;
+    var validationMessage = document.getElementById('passwordValidation');
+
+    var regex = /^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{8,}$/;
+
+    if (!regex.test(password)) {
+        validationMessage.textContent = "Password must be at least 8 characters long and include letters and numbers.";
+        validationMessage.style.color = "red";
+        return false; 
+    }
+
+    
     var requiredFields = document.querySelectorAll('input[required], select[required]');
     for (var i = 0; i < requiredFields.length; i++) {
         var fieldValue = requiredFields[i].value.trim();
-        var defaultValue = requiredFields[i].defaultValue;
-
-        if (fieldValue === '' || fieldValue === defaultValue) {
+        if (fieldValue === '' || fieldValue === requiredFields[i].defaultValue) {
             alert('Please fill all required fields.');
-            return false; 
+            return false; // 
         }
     }
 

@@ -10,6 +10,7 @@ builder.Services.AddDbContext<DataContext>(options =>
 
 
 builder.Services.AddScoped<IContactRepository, ContactRepository>();
+builder.Services.AddScoped<IUserRepository, UserRepository>();
 
 builder.Services.AddControllersWithViews();
 
