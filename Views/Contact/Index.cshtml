@@ -19,7 +19,7 @@
     <table id="table-contacts" class="table table-striped">
         <thead>
             <tr>
-                <th scope="col">#</th>
+                <th scope="col">Id</th>
                 <th scope="col">Name</th>
                 <th scope="col">Email</th>
                 <th scope="col">Number</th>
@@ -37,12 +37,23 @@
                     <td>
                         <a asp-controller="contact" asp-action="Edit" asp-route-id="@contact.Id" class="btn btn-primary btn-sm">Edit</a>
                         <button class="btn btn-danger btn-sm delete-button" data-id="@contact.Id" data-name="@contact.Name">Delete</button>
+                        
                     </td>
                 </tr>
             }
         </tbody>
     </table>
 </div>
+
+
+<style>
+    #contactListTitle {
+        font-size: 2.5rem; 
+        font-weight: bold; 
+        color: #333; 
+    }
+</style>
+
 
 <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 
@@ -77,4 +88,6 @@
             });
         });
     });
+
+    
 </script>

@@ -25,12 +25,13 @@
     <div class="form-group">
         <label for="Profile">Profile</label>
         <select class="form-control" id="Profile" name="Profile" required>
-            <option value="1">Admin</option>
             <option value="2">User</option>
+            <option value="1">Admin</option>
         </select>
     </div>
     <br>
     <button type="submit" class="btn btn-primary">Create</button>
+    <a href="@Url.Action("Index", "User")" class="btn btn-secondary">Cancel</a>
 </form>
 
 <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
