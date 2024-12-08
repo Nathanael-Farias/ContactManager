@@ -61,7 +61,7 @@ namespace AuthSystem.Controllers
         {
             if (id != user.Id)
             {
-                return BadRequest("IDs não coincidem.");
+                return BadRequest("IDs do not match.");
             }
 
             if (ModelState.IsValid)

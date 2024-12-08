@@ -4,48 +4,56 @@
     ViewData["Title"] = "Contact list";
 }
 
-<div class="text-center">
+<div class="text-center" style="padding-top: 50px;">
     <br>
-    <h1 class="display-4">Contact list</h1>
+    <h1 id="contactListTitle" class="display-4">Contact list</h1>
     <br>
     <div>
-        <a asp-controller="contact" asp-action="Create" class="btn btn-primary" role="button">
+        <a asp-controller="contact" asp-action="Create" class="btn btn-primary mb-3" role="button">
             Add new Contact
         </a>
     </div>
 </div>
 
-<table id="table-contacts" class="table table-striped">
-    <thead>
-        <tr>
-            <th scope="col">#</th>
-            <th scope="col">Name</th>
-            <th scope="col">Email</th>
-            <th scope="col">Number</th>
-            <th scope="col">Actions</th>
-        </tr>
-    </thead>
-    <tbody>
-        @foreach (var contact in Model)
-        {
+<div class="table-responsive">
+    <table id="table-contacts" class="table table-striped">
+        <thead>
             <tr>
-                <th scope="row">@contact.Id</th>
-                <td>@contact.Name</td>
-                <td>@contact.Email</td>
-                <td>@contact.Phone</td>
-                <td>
-                    <a asp-controller="contact" asp-action="Edit" asp-route-id="@contact.Id" class="btn btn-primary btn-sm">Edit</a>
-                    <button class="btn btn-danger btn-sm delete-button" data-id="@contact.Id" data-name="@contact.Name">Delete</button>
-                </td>
+                <th scope="col">#</th>
+                <th scope="col">Name</th>
+                <th scope="col">Email</th>
+                <th scope="col">Number</th>
+                <th scope="col">Actions</th>
             </tr>
-        }
-    </tbody>
-</table>
+        </thead>
+        <tbody>
+            @foreach (var contact in Model)
+            {
+                <tr>
+                    <th scope="row">@contact.Id</th>
+                    <td>@contact.Name</td>
+                    <td>@contact.Email</td>
+                    <td>@contact.Phone</td>
+                    <td>
+                        <a asp-controller="contact" asp-action="Edit" asp-route-id="@contact.Id" class="btn btn-primary btn-sm">Edit</a>
+                        <button class="btn btn-danger btn-sm delete-button" data-id="@contact.Id" data-name="@contact.Name">Delete</button>
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>
 
 <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 <script>
-    document.addEventListener("DOMContentLoaded", () => {
+    $(document).ready(function () {
+        
+        $("#contactListTitle").hide().fadeIn(1000).css('font-size', '2.5em'); 
+
+        $(".btn-primary").hide().fadeIn(1000).css('font-size', '1em'); 
+
         const deleteButtons = document.querySelectorAll(".delete-button");
 
         deleteButtons.forEach(button => {
@@ -53,7 +61,6 @@
                 const contactId = button.getAttribute("data-id");
                 const contactName = button.getAttribute("data-name");
 
-                
                 Swal.fire({
                     title: 'Are you sure?',
                     text: `Do you really want to delete "${contactName}"?`,
@@ -64,7 +71,6 @@
                     reverseButtons: true
                 }).then((result) => {
                     if (result.isConfirmed) {
-                        
                         window.location.href = `/contact/delete/${contactId}`;
                     }
                 });

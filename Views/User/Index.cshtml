@@ -6,10 +6,10 @@
 
 <div class="text-center">
     <br>
-    <h1 class="display-4">User list</h1>
+    <h1 class="display-4 fade-in">User list</h1>
     <br>
     <div>
-        <a asp-controller="User" asp-action="Create" class="btn btn-primary" role="button">
+        <a asp-controller="User" asp-action="Create" class="btn btn-primary fade-in" role="button">
             Add new User
         </a>
     </div>
@@ -38,10 +38,11 @@
                         <td>@user.Login</td>
                         <td>@user.Email</td>
                         <td>@user.Profile.ToString()</td>
-                        <td>@user.RegistrationDate.ToString("dd/MM/yyyy")</td>
-                        <td>@user.ModificationDate?.ToString("dd/MM/yyyy")</td>
+                        <td>@user.RegistrationDate.ToString("dd/MM/yyyy HH:mm")</td>
+                        <td>@user.ModificationDate?.ToString("dd/MM/yyyy HH:mm")</td>
+
                         <td>
-                            <a asp-controller="User" asp-action="Edit" asp-route-id="@user.Id" class="btn btn-primary btn-sm">Edit</a>
+                            <a asp-controller="User" asp-action="Edit" asp-route-id="@user.Id" class="btn btn-primary btn-sm fade-in">Edit</a>
                             <button class="btn btn-danger btn-sm delete-user" data-url="@Url.Action("Delete", "User", new { id = user.Id })" data-name="@user.Nome">
                                 Delete
                             </button>
@@ -71,7 +72,9 @@
             "info": true
         });
 
-        // SweetAlert2 for Delete Confirmation
+        
+        $('.fade-in').hide().fadeIn(1000);
+
         $('.delete-user').on('click', function () {
             const url = $(this).data('url');
             const userName = $(this).data('name');
@@ -87,7 +90,7 @@
                 cancelButtonText: 'Cancel'
             }).then((result) => {
                 if (result.isConfirmed) {
-                    // Redirect to the Delete page
+                    
                     window.location.href = url;
                 }
             });
