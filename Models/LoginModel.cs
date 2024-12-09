@@ -8,8 +8,6 @@ namespace AuthSystem.Models
         public string Login { get; set; }
 
         [Required(ErrorMessage = "Password is required.")]
-       
-        [RegularExpression(@"^(?=.*[a-zA-Z])(?=.*\d)[A-Za-z\d]+$", ErrorMessage = "Password must contain only letters and numbers.")]
-        public string Password { get; set; }
+              public string Password { get; set; }
     }
 }
