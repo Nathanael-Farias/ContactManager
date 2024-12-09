@@ -21,3 +21,12 @@ body {
   margin-bottom: 60px;
 }
 
+.navbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.navbar .nav-item:last-child {
+  margin-left: auto; /* Move o botão "Exit" para a extrema direita */
+}
