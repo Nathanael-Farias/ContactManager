@@ -13,19 +13,39 @@
                     <h3 class="card-title text-center mb-4">Login</h3>
                     <form asp-controller="Login" asp-action="Enter" method="post">
                         <div class="mb-3">
-                            <label for="username" class="form-label">Username</label>
-                            <input asp-for="Login" type="text" class="form-control" id="username" name="username" placeholder="Enter your username" required>
-                            @Html.ValidationMessageFor(x => x.Login)
+                            <label for="Login" class="form-label">Username</label>
+                            <input asp-for="Login" type="text" class="form-control" id="username" name="Login" placeholder="Enter your username" required>
+                            @Html.ValidationMessageFor(x => x.Login, "", new { @class = "text-danger" })
                         </div>
-                        <div class="mb-3">
-                            <label for="password" class="form-label">Password</label>
-                            <input asp-for="Password" type="password" class="form-control" id="password" name="password" placeholder="Enter your password" required>
-                            @Html.ValidationMessageFor(x => x.Password)                       
+                        <div class="mb-3 position-relative">
+                            <label for="Password" class="form-label">Password</label>
+                            @Html.ValidationMessageFor(x => x.Password, "", new { @class = "text-danger" })
+                            <input asp-for="Password" type="password" class="form-control" id="password" name="Password" placeholder="Enter your password" required>
+                            <input type="checkbox" id="showPassword" onclick="togglePassword()"> Show Password
                         </div>
                         <button type="submit" class="btn btn-primary w-100">Log In</button>
+
+                        @if (TempData.ContainsKey("ErrorMessage"))
+                        {
+                            <div class="alert alert-danger mt-3" role="alert">
+                                @TempData["ErrorMessage"]
+                            </div>
+                        }
                     </form>
                 </div>
             </div>
         </div>
     </div>
 </div>
+
+<script>
+    function togglePassword() {
+        var passwordField = document.getElementById("password");
+        var showPasswordCheckbox = document.getElementById("showPassword");
+        if (showPasswordCheckbox.checked) {
+            passwordField.type = "text";
+        } else {
+            passwordField.type = "password";
+        }
+    }
+</script>
