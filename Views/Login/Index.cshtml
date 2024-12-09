@@ -13,7 +13,7 @@
                     <h3 class="card-title text-center mb-4">Login</h3>
                     <form asp-controller="Login" asp-action="Enter" method="post">
                         <div class="mb-3">
-                            <label for="Login" class="form-label">Username</label>
+                            <label for="Login" class="form-label">Login</label>
                             <input asp-for="Login" type="text" class="form-control" id="username" name="Login" placeholder="Enter your username" required>
                             @Html.ValidationMessageFor(x => x.Login, "", new { @class = "text-danger" })
                         </div>
