@@ -1,46 +1,52 @@
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 using AuthSystem.Models;
+using AuthSystem.Repository;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.Extensions.Logging;
 
-namespace AuthSystem.Controllers
+public class LoginController : Controller
 {
-    public class LoginController : Controller
+    private readonly IUserRepository _userRepository;
+
+    public LoginController(IUserRepository userRepository)
     {
-        public IActionResult Index()
+        _userRepository = userRepository;
+    }
+
+    public IActionResult Index()
+    {
+        return View();
+    }
+
+    [HttpPost]
+   public IActionResult Enter(LoginModel loginModel)
+{
+    if (ModelState.IsValid)
+    {
+        UserModel user = _userRepository.SearchByLogin(loginModel.Login);
+
+        if (user != null)
         {
-            return View();
+            if (user.PasswordIsValid(loginModel.Password))
+            {
+                return RedirectToAction("Index", "Home");
+            }
+
+            
+            TempData["ErrorMessage"] = "Incorrect password.";
         }
-
-        [HttpPost]
-        public IActionResult Enter(LoginModel loginModel)
+        else
         {
-            try
-            {
-                if (ModelState.IsValid ) 
-                {
-                    
-
-                   return RedirectToAction("Index", "User"); 
-                        
-                       
-                    
-
-                    
-                   
-                }
-                
-                return View("Index");
-            }
-            catch (Exception error)
-            {
-                
-                TempData["ErrorMessage"] = $"An error occurred: {error.Message}";
-                return RedirectToAction("Index");
-            }
+            
+            TempData["ErrorMessage"] = "Invalid username.";
         }
     }
+    else
+    {
+        
+        TempData["ErrorMessage"] = "Please provide valid credentials.";
+    }
+
+    return View("Index");
+}
+
+
 }
