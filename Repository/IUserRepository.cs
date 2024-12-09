@@ -6,6 +6,8 @@ namespace AuthSystem.Repository
 {
     public interface IUserRepository
     {
+
+        UserModel SearchByLogin(string login);
         Task<UserModel> AddUserAsync(UserModel user);
         Task<IEnumerable<UserModel>> GetAllUsersAsync();
         Task<UserModel> GetUserByIdAsync(int id);

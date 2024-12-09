@@ -11,6 +11,15 @@ namespace AuthSystem.Repository
     {
         private readonly DataContext _context;
 
+
+
+        public UserModel SearchByLogin(string login)
+        {
+            return _context.Users.FirstOrDefault(x => x.Login.ToUpper() == login.ToUpper());
+        }
+
+
+
         public UserRepository(DataContext context)
         {
             _context = context;
@@ -82,5 +91,7 @@ namespace AuthSystem.Repository
                 })
                 .FirstOrDefaultAsync();
         }
+
+        
     }
 }
