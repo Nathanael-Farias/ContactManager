@@ -29,6 +29,7 @@ namespace AuthSystem.Repository
         {
             user.RegistrationDate = DateTime.UtcNow;
             user.ModificationDate = DateTime.UtcNow;
+            user.SetHashPassword();
             _context.Users.Add(user);
             await _context.SaveChangesAsync();
             return user;
