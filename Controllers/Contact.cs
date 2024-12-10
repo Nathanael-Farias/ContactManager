@@ -1,10 +1,12 @@
 using Microsoft.AspNetCore.Mvc;
 using AuthSystem.Models;
 using AuthSystem.Repository;
+using AuthSystem.Filters;
 
 namespace AuthSystem.Controllers
 {
     [Route("contact")]
+    [LoggedUserPage]
     public class ContactController : Controller
     {
         private readonly IContactRepository _contactRepository;
