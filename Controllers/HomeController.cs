@@ -1,9 +1,12 @@
 using System.Diagnostics;
 using Microsoft.AspNetCore.Mvc;
 using AuthSystem.Models;
+using AuthSystem.Filters;
 
 namespace AuthSystem.Controllers;
 
+
+[LoggedUserPage]
 public class HomeController : Controller
 {
 
