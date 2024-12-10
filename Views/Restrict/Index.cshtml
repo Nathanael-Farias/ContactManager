@@ -1,0 +1,48 @@
+@{
+    Layout = "_layoutUnLogged";
+    ViewData["Title"] = "Restricted Page";
+}
+
+<div id="content" style="display: none;">
+    <div class="container mt-5 text-center">
+        <div class="row justify-content-center">
+            <div class="col-md-8">
+                <div class="card shadow-lg p-4">
+                  <p class="lead">
+                        Sorry, you don't have the required permissions to access this page.
+                    </p>
+                    <p>
+                        If you believe this is a mistake, please contact the administrator.
+                    </p>
+                    <a href="/" class="btn btn-primary mt-3">Return to Home</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+<script>
+    document.body.style.backgroundColor = "white";
+    document.body.style.overflow = "hidden";
+
+    document.addEventListener("DOMContentLoaded", function () {
+        Swal.fire({
+            icon: 'error',
+            title: 'Access Denied',
+            text: 'You do not have permission to access this page.',
+            confirmButtonText: 'OK',
+            showCancelButton: true,
+            cancelButtonText: 'Go Home',
+            backdrop: false,
+        }).then((result) => {
+            if (result.isDismissed) {
+                window.location.href = '/';
+            } else {
+                document.body.style.backgroundColor = "";
+                document.body.style.overflow = "";
+                document.getElementById("content").style.display = "block";
+            }
+        });
+    });
+</script>
