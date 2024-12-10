@@ -1,5 +1,6 @@
 using System;
 using AuthSystem.Enums;
+using AuthSystem.Helper;
 
 namespace AuthSystem.Models
 {
@@ -14,10 +15,16 @@ namespace AuthSystem.Models
         public DateTime RegistrationDate { get; set; }
         public DateTime? ModificationDate { get; set; }
 
-        public bool PasswordIsValid(string password)
+      public bool PasswordIsValid(string password)
         {
             
-            return Password.Equals(password.ToUpper(), StringComparison.OrdinalIgnoreCase);
+            return Password == password.GenerateHash();
+        }
+        public void SetHashPassword()
+        {
+
+            Password = Password.GenerateHash();
+
         }
     }
 }
