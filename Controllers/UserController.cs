@@ -4,10 +4,12 @@ using System.Linq;
 using AuthSystem.Repository;
 using AuthSystem.Models;
 using System.Threading.Tasks;
+using AuthSystem.Filters;
 
 namespace AuthSystem.Controllers
 {
     [Route("[controller]")]
+    [RestrictPageOnlyAdmin]
     public class UserController : Controller
     {
         private readonly IUserRepository _userRepository;
