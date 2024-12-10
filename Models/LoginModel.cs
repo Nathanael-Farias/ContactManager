@@ -4,10 +4,10 @@ namespace AuthSystem.Models
 {
     public class LoginModel
     {
-        [Required(ErrorMessage = "Username is required.")]
+        [Required(ErrorMessage = "")]
         public string Login { get; set; }
 
-        [Required(ErrorMessage = "Password is required.")]
+        [Required(ErrorMessage = "")]
               public string Password { get; set; }
     }
 }
