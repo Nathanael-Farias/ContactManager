@@ -43,6 +43,7 @@ public class LoginController : Controller
         {
             if (user.PasswordIsValid(loginModel.Password))
             {
+                
                 _section.CreateUserSection(user);
                 return RedirectToAction("Index", "Home");
             }
