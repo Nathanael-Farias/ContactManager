@@ -97,7 +97,7 @@ public class LoginController : Controller
                 if(emailSend)
                 {
                     _userRepository.UpdateUserAsync(user);
-                    TempData["SuccessMessage"] = "A new password has been sent to your registered email.  Note: If you dont see the email in your inbox, please check your spam folder.";
+                    TempData["SuccessMessage"] = "A new password has been sent to your registered email.";
                 }
                 else
                 {
