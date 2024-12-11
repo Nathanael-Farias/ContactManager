@@ -103,7 +103,7 @@ ContactManager/
 
 - **MVC (Model-View-Controller)**: Organização principal do projeto.
 - **Repository Pattern**: Implementado para abstrair o acesso aos dados.
-- **Factory Pattern**: Utilizado indiretamente na criação de objetos reutilizáveis.
+- **Factory Pattern**: Utilizado na criação de objetos reutilizáveis.
 
 ## Imagens do Projeto
 
@@ -115,4 +115,4 @@ Contribuições são bem-vindas! Sinta-se à vontade para abrir issues ou enviar
 
 ---
 
-Desenvolvido por Nathanael Farias.
+Desenvolvido por Nathanael Da Silva Farias.
