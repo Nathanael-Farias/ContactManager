@@ -14,8 +14,7 @@ public class HomeController : Controller
     public IActionResult Index()
     {
         HomeModel home = new HomeModel();
-        home.Nome = "Nathanael";
-        home.Email = "nathanael@gmail";
+        
         return View(home);
     }
 
