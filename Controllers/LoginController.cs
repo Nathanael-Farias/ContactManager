@@ -7,11 +7,13 @@ public class LoginController : Controller
 {
     private readonly IUserRepository _userRepository;
     private readonly ISection _section;
+    private readonly IEmail _email;
 
-    public LoginController(IUserRepository userRepository, ISection section)
+    public LoginController(IUserRepository userRepository, ISection section, IEmail email)
     {
         _userRepository = userRepository;
         _section = section;
+        _email = email;
     }
 
     public IActionResult Index()
@@ -23,6 +25,16 @@ public class LoginController : Controller
             return View();
 
     }
+
+    public IActionResult ResetPassword()
+    {
+        return View();
+    }
+
+    
+
+
+
 
     public IActionResult Exit()
     {
@@ -65,6 +77,52 @@ public class LoginController : Controller
 
     return View("Index");
 }
+   [HttpPost]
+    public IActionResult SendResetPasswordLink(ResetPasswordModel resetPasswordModel)
+    {
+        if (ModelState.IsValid)
+        {
+            UserModel user = _userRepository.SearchByEmailAndLogin(resetPasswordModel.Email, resetPasswordModel.Login);
 
+            if (user != null)
+            {
+
+
+                string newPassword = user.GenerateNewPassword();
+                
+
+                string message = $"Your new password is {newPassword}";
+                bool emailSend = _email.Send(user.Email, "Contact Manager -new password", message);
+
+                if(emailSend)
+                {
+                    _userRepository.UpdateUserAsync(user);
+                    TempData["SuccessMessage"] = "A new password has been sent to your registered email.  Note: If you dont see the email in your inbox, please check your spam folder.";
+                }
+                else
+                {
+                    TempData["ErrorMessage"] = "Please provide valid credentials and try again, we cannot send a email to you";
+                }
+                
+                return View("ResetPassword"); 
+            }
+            else
+            {
+            
+                TempData["ErrorMessage"] = "Invalid username or email.";
+            }
+        }
+        else
+        {
+            
+            TempData["ErrorMessage"] = "Please provide valid credentials.";
+        }
+
+        return View("ResetPassword");
+    }
 
 }
+
+
+
+
