@@ -3,7 +3,9 @@
 @{
     Layout = "_LayoutUnlogged";
     ViewData["Title"] = "Login";
+    
 }
+
 
 
 <div class="container mt-5">
@@ -11,8 +13,6 @@
         <div class="col-md-6">
             <div class="card shadow">
                 <div class="card-body">
-                    
-                
                     <h3 class="card-title text-center mb-4">Login</h3>
                     <form id="login-form" asp-controller="Login" asp-action="Enter" method="post">
                         <div class="mb-3">
@@ -34,13 +34,15 @@
                                 @TempData["ErrorMessage"]
                             </div>
                         }
+
+                        
+                        <a href="#" class="btn btn-link w-100 mt-3" onclick="confirmResetPassword()">Reset my password</a>
                     </form>
                 </div>
             </div>
         </div>
     </div>
 </div>
-
 
 <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 <script>
@@ -61,11 +63,9 @@
             return;
         }
 
-        
         form.submit();
     });
 
-   
     if (TempData.ContainsKey("ErrorMessage")) {
         Swal.fire({
             icon: 'error',
@@ -83,5 +83,21 @@
         } else {
             passwordField.type = "password";
         }
+    }
+
+    function confirmResetPassword() {
+        Swal.fire({
+            title: 'Are you sure?',
+            text: "This will redirect you to the reset password page.",
+            icon: 'warning',
+            showCancelButton: true,
+            confirmButtonText: 'Yes',
+            cancelButtonText: 'Cancel',
+            reverseButtons: true
+        }).then((result) => {
+            if (result.isConfirmed) {
+                window.location.href = "@Url.Action("ResetPassword", "Login")";
+            }
+        });
     }
 </script>
