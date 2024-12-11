@@ -19,6 +19,11 @@ namespace AuthSystem.Repository
         }
 
 
+         public UserModel SearchByEmailAndLogin(string email, string login)
+        {
+            return _context.Users.FirstOrDefault(x => x.Email.ToUpper() == email.ToUpper() && x.Login.ToUpper() == login.ToUpper());
+        }
+
 
         public UserRepository(DataContext context)
         {
@@ -93,6 +98,6 @@ namespace AuthSystem.Repository
                 .FirstOrDefaultAsync();
         }
 
-        
+       
     }
 }

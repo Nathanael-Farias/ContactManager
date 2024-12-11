@@ -8,6 +8,7 @@ namespace AuthSystem.Repository
     {
 
         UserModel SearchByLogin(string login);
+        UserModel SearchByEmailAndLogin(string email, string login);
         Task<UserModel> AddUserAsync(UserModel user);
         Task<IEnumerable<UserModel>> GetAllUsersAsync();
         Task<UserModel> GetUserByIdAsync(int id);
