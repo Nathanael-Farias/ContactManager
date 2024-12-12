@@ -2,4 +2,5 @@
 /appsettings.json
 /bin
 /obj
-wwwroot/Assets/
+/wwwroot/Assets/**/*.png
+
