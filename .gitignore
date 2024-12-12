@@ -2,4 +2,4 @@
 /appsettings.json
 /bin
 /obj
-/Assets
+wwwroot/Assets/
