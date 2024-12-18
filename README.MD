@@ -9,81 +9,93 @@
   - Recuperação de senha via e-mail.
   - Hashing de senhas para maior segurança.
   - Restrição de acesso com filtros para usuários logados e administradores.
+
 - **Gerenciamento de Usuários**:
   - Criação, edição e exclusão de usuários.
   - Listagem e visualização de detalhes.
+
 - **Gerenciamento de Contatos**:
   - Criação, edição e exclusão de contatos.
   - Pesquisa por e-mail.
+
+- **Alteração de Senha**:
+  - Funcionalidade para alteração de senha, permitindo que o usuário atualize sua senha através de um fluxo seguro.
+
 - **Interface de Navegação**:
   - Sistema de menu dinâmico.
   - Layouts distintos para usuários logados e não logados.
+
 - **Outros Recursos**:
   - Pop-ups de confirmação para ações importantes.
   - Mensagens de erro e validação personalizadas.
+
 
 ## Estrutura do Projeto
 
 ```
 ContactManager/
-├── Controllers/                # Controladores responsáveis pela lógica de negócios.
-│   ├── ContactController.cs    # Gerencia funcionalidades relacionadas a contatos.
-│   ├── HomeController.cs       # Gerencia a página inicial.
-│   ├── LoginController.cs      # Gerencia o fluxo de login e recuperação de senha.
-│   ├── RestrictController.cs   # Gerencia páginas restritas a usuários logados.
-│   └── UserController.cs       # Gerencia o CRUD de usuários.
+├── Controllers/                # Diretório contendo os controladores responsáveis pela lógica de negócios.
+│   ├── ContactController.cs    # Gerencia funcionalidades relacionadas a contatos, como criação, leitura, atualização e exclusão.
+│   ├── HomeController.cs       # Gerencia a página inicial do aplicativo.
+│   ├── LoginController.cs      # Gerencia o fluxo de autenticação, incluindo login e recuperação de senha.
+│   ├── RestrictController.cs   # Gerencia páginas restritas, acessíveis apenas para usuários autenticados.
+│   ├── UserController.cs       # Gerencia operações de CRUD de usuários.
+│   ├── ChangePasswordController.cs  # Gerencia a funcionalidade de alteração de senha do usuário.
 │
 ├── Data/                       # Configuração do banco de dados e contexto.
 │   ├── DataContext.cs          # Contexto do banco de dados (Entity Framework).
 │   └── Migrations/             # Arquivos de migração do banco de dados.
 │
-├── Enums/                      # Enumerações para perfis e permissões.
-│   └── EnumProfile.cs          # Define perfis de usuários.
+├── Data/                       # Diretório de configuração do banco de dados e contextos.
+│   ├── DataContext.cs          # Define o contexto do banco de dados usando Entity Framework.
 │
-├── Filters/                    # Filtros de autorização e navegação.
+├── Enums/                      # Diretório contendo as enumerações para perfis e permissões.
+│   └── EnumProfile.cs          # Define os diferentes perfis de usuário e suas permissões associadas.
+│
+├── Filters/                    # Diretório com filtros de autorização e navegação.
 │   ├── LoggedUserPage.cs       # Filtro para páginas acessíveis apenas por usuários logados.
-│   └── RestrictPageOnlyAdmin.cs# Filtro para páginas restritas a administradores.
+│   └── RestrictPageOnlyAdmin.cs# Filtro para páginas restritas apenas a administradores.
 │
-├── Helper/                     # Utilitários e classes auxiliares.
-│   ├── Cryptography.cs         # Sistema de hashing para senhas.
-│   ├── Email.cs                # Implementação de envio de e-mails.
-│   ├── IEmail.cs               # Interface para envio de e-mails.
-│   ├── ISection.cs             # Interface para gerenciamento de seções.
-│   └── Section.cs              # Implementação do gerenciamento de seções.
+├── Helper/                     # Diretório com utilitários e classes auxiliares.
+│   ├── Cryptography.cs         # Implementa o sistema de hashing de senhas.
+│   ├── Email.cs                # Implementação para envio de e-mails.
+│   ├── IEmail.cs               # Interface para a funcionalidade de envio de e-mails.
+│   ├── ISection.cs             # Interface para gerenciamento de seções de configuração.
+│   └── Section.cs              # Implementação da interface de gerenciamento de seções.
 │
-├── Models/                     # Modelos para dados e lógica de negócios.
-│   ├── ContactModel.cs         # Modelo para contatos.
+├── Models/                     # Diretório contendo os modelos de dados e lógica de negócios.
+│   ├── ChangePasswordModel.cs  # Modelo para a funcionalidade de mudança de senha.
+│   ├── ContactModel.cs         # Modelo para dados de contato.
 │   ├── ErrorViewModel.cs       # Modelo para exibição de erros.
 │   ├── HomeModel.cs            # Modelo para a página inicial.
-│   ├── LoginModel.cs           # Modelo para login.
-│   ├── ResetPasswordModel.cs   # Modelo para recuperação de senha.
-│   └── UserModel.cs            # Modelo para usuários.
+│   ├── LoginModel.cs           # Modelo para a funcionalidade de login.
+│   ├── ResetPasswordModel.cs   # Modelo para a funcionalidade de recuperação de senha.
+│   └── UserModel.cs            # Modelo para dados de usuário.
 │
-├── Repository/                 # Repositórios para acesso aos dados.
-│   ├── ContactRepository.cs    # Repositório para contatos.
+├── Repository/                 # Diretório com repositórios para acesso aos dados.
+│   ├── ContactRepository.cs    # Repositório para operações relacionadas a contatos.
 │   ├── IContactRepository.cs   # Interface para repositório de contatos.
 │   ├── IUserRepository.cs      # Interface para repositório de usuários.
-│   └── UserRepository.cs       # Repositório para usuários.
+│   └── UserRepository.cs       # Repositório para operações relacionadas a usuários.
 │
-├── ViewComponents/             # Componentes reutilizáveis nas views.
-│   └── Menu.cs                 # Componente de menu dinâmico.
+├── ViewComponents/             # Diretório com componentes reutilizáveis em views.
+│   └── Menu.cs                 # Componente dinâmico de menu.
 │
-├── Views/                      # Arquivos de visualização (Views).
-│   ├── Contact/                # Views para gerenciamento de contatos.
-│   ├── Home/                   # Views para a página inicial.
-│   ├── Login/                  # Views para login e recuperação de senha.
-│   ├── Restrict/               # Views para páginas restritas.
-│   ├── Shared/                 # Layouts e componentes compartilhados.
-│   └── User/                   # Views para gerenciamento de usuários.
+├── Views/                      # Diretório com as visualizações.
+│   ├── ChangePassword/         # Diretório com as views para a funcionalidade de mudança de senha.
+│   ├── Contact/                # Diretório com as views para gerenciamento de contatos.
+│   ├── Home/                   # Diretório com as views para a página inicial.
+│   ├── Login/                  # Diretório com as views para login e recuperação de senha.
+│   ├── Restrict/               # Diretório com as views para páginas restritas.
+│   ├── Shared/                 # Diretório com layouts e componentes compartilhados.
+│   └── User/                   # Diretório com as views para gerenciamento de usuários.
 │
-├── wwwroot/                    # Arquivos estáticos (CSS, JS, etc.).
+├── wwwroot/                    # Arquivos estáticos.
 │   ├── css/                    # Estilos do site.
 │   ├── js/                     # Scripts JavaScript.
 │   └── lib/                    # Bibliotecas de terceiros.
 │
 ├── Program.cs                  # Ponto de entrada do aplicativo.
-├── ContactManager.csproj       # Arquivo de configuração do projeto.
-└── ContactManager.sln          # Solução do projeto.
 ```
 
 ## Tecnologias Utilizadas
@@ -107,7 +119,7 @@ ContactManager/
 
 ## Imagens do Projeto
 
-Adicione aqui capturas de tela do projeto, como a página inicial, telas de login, gerenciamento de usuários, etc.
+
 
 ## Contribuição
 
