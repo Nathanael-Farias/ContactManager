@@ -20,6 +20,12 @@ namespace AuthSystem.Models
             
             return Password == password.GenerateHash();
         }
+
+        public void SetNewPassword(string newPassword)
+        {
+            Password = newPassword.GenerateHash();
+        }
+
         public void SetHashPassword()
         {
 
