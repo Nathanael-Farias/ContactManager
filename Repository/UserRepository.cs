@@ -61,6 +61,26 @@ namespace AuthSystem.Repository
             return existingUser;
         }
 
+        public async Task<UserModel> ChangePasswordAsync(ChangePasswordModel changePasswordModel)
+        {
+            UserModel userDB = await GetUserByIdAsync(changePasswordModel.Id);
+
+            if (userDB == null) throw new Exception("There was an error updating the password, user not found.");
+
+            if (!userDB.PasswordIsValid(changePasswordModel.CurrentPassword)) throw new Exception("Current Password doesn't match.");
+
+            if (userDB.PasswordIsValid(changePasswordModel.NewPassword)) throw new Exception("New password cannot be the same as the current password.");
+
+            userDB.SetNewPassword(changePasswordModel.NewPassword);
+            userDB.ModificationDate = DateTime.Now;
+            _context.Users.Update(userDB);
+            await _context.SaveChangesAsync();
+            return userDB;
+        }
+
+
+
+
         public async Task<bool> DeleteUserAsync(int id)
         {
             var user = await _context.Users.FindAsync(id);
