@@ -13,6 +13,7 @@ namespace AuthSystem.Models
         public string Password { get; set; }
         public DateTime RegistrationDate { get; set; }
         public DateTime? ModificationDate { get; set; }
+        public virtual List<ContactModel> Contacts { get; set; }
 
       public bool PasswordIsValid(string password)
         {
