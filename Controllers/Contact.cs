@@ -2,6 +2,7 @@ using Microsoft.AspNetCore.Mvc;
 using AuthSystem.Models;
 using AuthSystem.Repository;
 using AuthSystem.Filters;
+using AuthSystem.Helper;
 
 namespace AuthSystem.Controllers
 {
@@ -10,16 +11,19 @@ namespace AuthSystem.Controllers
     public class ContactController : Controller
     {
         private readonly IContactRepository _contactRepository;
+        private readonly ISection _section;
 
-        public ContactController(IContactRepository contactRepository)
+        public ContactController(IContactRepository contactRepository, ISection section)
         {
             _contactRepository = contactRepository;
+            _section = section;
         }
 
         [HttpGet("")]
         public async Task<IActionResult> Index()
         {
-            var contacts = await _contactRepository.GetAllContactsAsync();
+            UserModel userLogged = _section.FindUserSection();
+            var contacts = await _contactRepository.GetAllContactsAsync(userLogged.Id);
             return View(contacts);
         }
 
@@ -34,6 +38,8 @@ namespace AuthSystem.Controllers
         {
             if (ModelState.IsValid)
             {
+                UserModel userLogged = _section.FindUserSection();
+                contact.UserId = userLogged.Id;
                 await _contactRepository.AddContactAsync(contact);
                 return RedirectToAction("Index");
             }
@@ -67,6 +73,9 @@ namespace AuthSystem.Controllers
             {
                 return NotFound();
             }
+
+            UserModel userLogged = _section.FindUserSection();
+            contact.UserId = userLogged.Id;
 
             existingContact.Name = contact.Name;
             existingContact.Email = contact.Email;
