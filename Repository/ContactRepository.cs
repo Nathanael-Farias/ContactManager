@@ -34,9 +34,9 @@ namespace AuthSystem.Repository
             return true;
         }
 
-        public async Task<IEnumerable<ContactModel>> GetAllContactsAsync()
+        public async Task<IEnumerable<ContactModel>> GetAllContactsAsync(int userId)
         {
-            return await _context.Contacts.ToListAsync();
+            return await _context.Contacts.Where(x => x.UserId == userId).ToListAsync();
         }
 
         public async Task<ContactModel> GetContactByIdAsync(int id)
