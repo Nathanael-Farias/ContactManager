@@ -1,4 +1,3 @@
-using System;
 using AuthSystem.Enums;
 using AuthSystem.Helper;
 

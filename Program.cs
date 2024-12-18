@@ -1,7 +1,6 @@
 using AuthSystem.Data;
 using AuthSystem.Repository;
 using Microsoft.EntityFrameworkCore;
-using Microsoft.AspNetCore.Http;
 using AuthSystem.Helper;
 
 var builder = WebApplication.CreateBuilder(args);
