@@ -45,11 +45,11 @@ namespace AuthSystem.Helper
                 return true;
             }
         }
-        catch (System.Exception ex)
+        catch (System.Exception)
         {
             return false;
-            
         }
+
 
 
 
