@@ -5,40 +5,38 @@
 <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target=".navbar-collapse" aria-controls="navbarSupportedContent"
         aria-expanded="false" aria-label="Toggle navigation">
     <span class="navbar-toggler-icon"></span>
-   
 </button>
 
 <div class="navbar-collapse collapse d-sm-inline-flex justify-content-between">
-    
     <ul class="navbar-nav flex-grow-1">
-        
         <li class="nav-item">
             <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Index">Home</a>
-            
         </li>
         <li class="nav-item">
             <a class="nav-link text-dark" asp-area="" asp-controller="Contact" asp-action="Index">Contact</a>
         </li>
-     
+
         @if(Model.Profile == AuthSystem.Enums.EnumProfile.Admin)
         {
+            <li class="nav-item">
+                <a class="nav-link text-dark" asp-area="" asp-controller="User" asp-action="Index">Users</a>
+            </li>
+        }
 
         <li class="nav-item">
-            <a class="nav-link text-dark" asp-area="" asp-controller="User" asp-action="Index">Users</a>
+            <a class="nav-link text-dark" id="change-password-link" href="#">Change Password</a>
         </li>
-
-        }
 
         <li class="nav-item ms-auto">
             <a class="nav-link text-dark" id="exit-link" href="#">Exit</a>
         </li>
     </ul>
 </div>
-</body>
+
 <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 <script>
     document.getElementById('exit-link').addEventListener('click', function (event) {
-        event.preventDefault(); 
+        event.preventDefault();
         Swal.fire({
             title: 'Are you sure?',
             text: "You are about to exit!",
@@ -55,10 +53,28 @@
                     'See you later!',
                     'success'
                 ).then(() => {
-                    
                     window.location.href = '@Url.Action("Exit", "Login")';
                 });
             }
         });
     });
+
+    document.getElementById('change-password-link').addEventListener('click', function (event) {
+        event.preventDefault();
+        Swal.fire({
+            title: 'Are you sure?',
+            text: "You are about to change your password!",
+            icon: 'warning',
+            showCancelButton: true,
+            confirmButtonColor: '#3085d6',
+            cancelButtonColor: '#d33',
+            confirmButtonText: 'Yes, proceed!',
+            cancelButtonText: 'Cancel'
+        }).then((result) => {
+            if (result.isConfirmed) {
+                window.location.href = '@Url.Action("Index", "ChangePassword")';
+            }
+        });
+    });
 </script>
+</body>
