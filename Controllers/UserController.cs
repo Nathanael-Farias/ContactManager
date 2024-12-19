@@ -2,6 +2,7 @@ using Microsoft.AspNetCore.Mvc;
 using AuthSystem.Repository;
 using AuthSystem.Models;
 using AuthSystem.Filters;
+using System;
 
 namespace AuthSystem.Controllers
 {
@@ -10,10 +11,11 @@ namespace AuthSystem.Controllers
     public class UserController : Controller
     {
         private readonly IUserRepository _userRepository;
-
+        
         public UserController(IUserRepository userRepository)
         {
             _userRepository = userRepository;
+            
         }
 
         [HttpGet("")]
@@ -71,7 +73,6 @@ namespace AuthSystem.Controllers
                     return NotFound();
                 }
 
-                
                 if (string.IsNullOrEmpty(user.Password))
                 {
                     user.Password = existingUser.Password;
@@ -91,35 +92,32 @@ namespace AuthSystem.Controllers
             return View(user);
         }
 
-          
-            [HttpGet("delete/{id}")]
-            public async Task<IActionResult> Delete(int id)
+        [HttpGet("delete/{id}")]
+        public async Task<IActionResult> Delete(int id)
+        {
+            var user = await _userRepository.GetUserByIdAsync(id);
+            if (user == null)
             {
-                var user = await _userRepository.GetUserByIdAsync(id);
-                if (user == null)
-                {
-                    return NotFound();
-                }
-
-                return View(user); 
+                return NotFound();
             }
 
+            return View(user); 
+        }
 
-            [HttpPost("delete")]
-            public async Task<IActionResult> DeleteConfirmed(int id)
+        [HttpPost("delete")]
+        public async Task<IActionResult> DeleteConfirmed(int id)
+        {
+            var user = await _userRepository.GetUserByIdAsync(id);
+            if (user == null)
             {
-                var user = await _userRepository.GetUserByIdAsync(id);
-                if (user == null)
-                {
-                    return NotFound();
-                }
-
-                await _userRepository.DeleteUserAsync(id);
-
-                return RedirectToAction("Index");
+                return NotFound();
             }
 
+            await _userRepository.DeleteUserAsync(id);
 
+            return RedirectToAction("Index");
+        }
 
+     
     }
 }
