@@ -1,7 +1,9 @@
 @model UserModel
 
 <body class="custom-background">
-<a class="navbar-brand" asp-area="" asp-controller="Home" asp-action="Index">Hello, @Model.Nome</a>
+<a class="navbar-brand" asp-area="" asp-controller="Home" asp-action="Index">
+    Hello, @Model.Nome
+</a>
 <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target=".navbar-collapse" aria-controls="navbarSupportedContent"
         aria-expanded="false" aria-label="Toggle navigation">
     <span class="navbar-toggler-icon"></span>
@@ -10,25 +12,35 @@
 <div class="navbar-collapse collapse d-sm-inline-flex justify-content-between">
     <ul class="navbar-nav flex-grow-1">
         <li class="nav-item">
-            <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Index">Home</a>
+            <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Index">
+                <img src="@Url.Content("~/Assets/Icons/Home-Icon.png")" class="icon" alt="Home Icon" /> <span>Home</span>
+            </a>
         </li>
         <li class="nav-item">
-            <a class="nav-link text-dark" asp-area="" asp-controller="Contact" asp-action="Index">Contact</a>
+            <a class="nav-link text-dark" asp-area="" asp-controller="Contact" asp-action="Index">
+                <img src="@Url.Content("~/Assets/Icons/Agenda-Icon.png")" class="icon" alt="Agenda Icon" /> <span>Contacts</span>
+            </a>
         </li>
 
         @if(Model.Profile == AuthSystem.Enums.EnumProfile.Admin)
         {
             <li class="nav-item">
-                <a class="nav-link text-dark" asp-area="" asp-controller="User" asp-action="Index">Users</a>
+                <a class="nav-link text-dark" asp-area="" asp-controller="User" asp-action="Index">
+                    <img src="@Url.Content("~/Assets/Icons/Users-Icon.png")" class="icon" alt="Users Icon" /> <span>Users</span>
+                </a>
             </li>
         }
 
         <li class="nav-item">
-            <a class="nav-link text-dark" id="change-password-link" href="#">Change Password</a>
+            <a class="nav-link text-dark" id="change-password-link" href="#">
+                <img src="@Url.Content("~/Assets/Icons/Change-Password-Icon.png")" class="icon" alt="Change Password Icon" /> <span>Change Password</span>
+            </a>
         </li>
 
         <li class="nav-item ms-auto">
-            <a class="nav-link text-dark" id="exit-link" href="#">Exit</a>
+            <a class="nav-link text-dark" id="exit-link" href="#">
+                <img src="@Url.Content("~/Assets/Icons/Exit-Icon.webp")" class="icon" alt="Exit Icon" /> <span>Exit</span>
+            </a>
         </li>
     </ul>
 </div>
