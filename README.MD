@@ -148,7 +148,7 @@ ContactManager/
 
 ## Contribuição
 
-Contribuições são bem-vindas! Sinta-se à vontade para abrir issues ou enviar pull requests.
+Contribuições são bem-vindas. Sinta-se à vontade para abrir issues ou enviar pull requests.
 
 ---
 
