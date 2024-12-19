@@ -21,6 +21,8 @@ builder.Services.AddCors(options =>
 });
 
 
+
+
 builder.Services.AddSingleton<IHttpContextAccessor, HttpContextAccessor>();
 builder.Services.AddScoped<ISection, Section>();
 builder.Services.AddControllersWithViews();
@@ -47,5 +49,10 @@ app.MapControllerRoute(
 app.MapControllerRoute(
     name: "home",
     pattern: "{controller=Home}/{action=Index}/{id?}");
+
+app.UseRouting();
+
+app.UseRouting();
+
 
 app.Run();
