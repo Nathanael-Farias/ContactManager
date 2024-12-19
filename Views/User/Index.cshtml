@@ -22,6 +22,7 @@
                 <th scope="col">Login</th>
                 <th scope="col">Email</th>
                 <th scope="col">Profile</th>
+                <th scope="col">Total Contacts</th>
                 <th scope="col">Registration Date</th>
                 <th scope="col">Modification Date</th>
                 <th scope="col">Actions</th>
@@ -38,12 +39,19 @@
                         <td>@user.Login</td>
                         <td>@user.Email</td>
                         <td>@user.Profile.ToString()</td>
+                        <td>
+                            <a href="#" user-id="@user.Id" class="btn btn-success btn-sm btn-total-contacts fade-in">
+                                @(user.Contacts != null && user.Contacts.Any() ? user.Contacts.Count() : 0)
+                            </a>
+                        </td>
                         <td>@user.RegistrationDate.ToString("dd/MM/yyyy HH:mm")</td>
                         <td>@user.ModificationDate?.ToString("dd/MM/yyyy HH:mm")</td>
 
                         <td>
                             <a asp-controller="User" asp-action="Edit" asp-route-id="@user.Id" class="btn btn-primary btn-sm fade-in">Edit</a>
-                            <button class="btn btn-danger btn-sm delete-user" data-url="@Url.Action("Delete", "User", new { id = user.Id })" data-name="@user.Nome">
+                            <button class="btn btn-danger btn-sm delete-user fade-in" 
+                                    data-url="@Url.Action("Delete", "User", new { id = user.Id })" 
+                                    data-name="@user.Nome">
                                 Delete
                             </button>
                         </td>
@@ -53,37 +61,51 @@
             else
             {
                 <tr>
-                    <td colspan="8" class="text-center">No users found.</td>
+                    <td colspan="9" class="text-center">No users found.</td>
                 </tr>
             }
         </tbody>
     </table>
-</div>
 
-<style>
-    .display-4 {
-        font-size: 2.5rem; 
-        font-weight: bold; 
-        color: #333; 
-    }
-</style>
+    <!-- Modal for Contact List -->
+    <div id="modalUserContacts" class="modal fade" tabindex="-1" role="dialog">
+        <div class="modal-dialog modal-lg" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">List of Contacts</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <div id="userContactList"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
 <script src="https://cdn.datatables.net/1.11.5/js/jquery.dataTables.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
-
-<script type="text/javascript">
+<script>
     $(document).ready(function () {
         $('#table-users').DataTable({
-            "paging": true,
-            "searching": true,
-            "info": true
+            paging: true,
+            searching: true,
+            info: true
         });
 
         
-        $('.fade-in').hide().fadeIn(1000);
+        $(document).on('click', '.btn-total-contacts', function () {
+            var userId = $(this).attr('user-id');
+               
 
-        $('.delete-user').on('click', function () {
+
+        });
+
+       
+        $(document).on('click', '.delete-user', function () {
             const url = $(this).data('url');
             const userName = $(this).data('name');
 
@@ -98,10 +120,15 @@
                 cancelButtonText: 'Cancel'
             }).then((result) => {
                 if (result.isConfirmed) {
-                    
                     window.location.href = url;
                 }
             });
         });
+
+        
+        $('.fade-in').hide().fadeIn(1000);
+
+        
+        
     });
 </script>
