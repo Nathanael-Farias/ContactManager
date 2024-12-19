@@ -93,7 +93,9 @@ namespace AuthSystem.Repository
 
         public async Task<IEnumerable<UserModel>> GetAllUsersAsync()
         {
-            return await _context.Users.ToListAsync();
+            return await _context.Users.
+            Include(x => x.Contacts).
+            ToListAsync();
         }
 
         public async Task<UserModel> GetUserByIdAsync(int id)
