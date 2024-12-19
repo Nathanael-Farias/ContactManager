@@ -34,3 +34,654 @@ body {
 .navbar .nav-item:last-child {
   margin-left: auto;
 }
+
+
+
+.display-4 {
+  font-size: 2.5rem; 
+  font-weight: bold; 
+  color: #333; 
+}
+
+@media (max-width: 768px) {
+  .display-4 {
+      font-size: 1.8rem; 
+  }
+}
+
+@media (max-width: 480px) {
+  .display-4 {
+      font-size: 1.5rem; 
+  }
+}
+
+
+
+.d-flex {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 100vh; 
+  padding: 20px; 
+}
+
+.text-center {
+  text-align: center;
+  transform: scale(1); 
+  margin-bottom: 20px;
+}
+
+h1 {
+  font-size: 2.5em; 
+  margin-bottom: 15px;
+}
+
+p {
+  font-size: 1em; 
+  margin-bottom: 20px;
+}
+
+strong {
+  font-weight: bold;
+}
+
+.form-group {
+  width: 100%; 
+  margin-bottom: 15px;
+}
+
+button[type="submit"], a {
+  width: 100%; 
+  font-size: 1em; 
+  margin-bottom: 10px; 
+  display: block; 
+}
+
+
+@media (max-width: 768px) {
+  .text-center {
+      transform: scale(1); 
+  }
+
+  h1 {
+      font-size: 2em; 
+  }
+
+  p {
+      font-size: 0.9em; 
+  }
+
+  .form-group {
+      width: 100%; 
+  }
+
+  button[type="submit"], a {
+      font-size: 0.9em; 
+      margin-bottom: 5px; 
+  }
+}
+
+@media (max-width: 480px) {
+  .d-flex {
+      padding: 10px; 
+  }
+
+  h1 {
+      font-size: 1.5em; 
+  }
+
+  p {
+      font-size: 0.8em; 
+  }
+
+  .form-group {
+      padding: 5px; 
+  }
+
+  button[type="submit"], a {
+      font-size: 0.8em; 
+      padding: 10px; 
+      margin-bottom: 2px; 
+  }
+}
+
+
+.text-center {
+  text-align: center;
+}
+
+
+#table-users {
+  width: 100%;
+  overflow-x: auto; 
+  border-collapse: collapse;
+  margin-top: 20px;
+}
+
+#table-users th, #table-users td {
+  padding: 8px;
+  text-align: left;
+  border: 1px solid #ddd;
+}
+
+
+@media (max-width: 768px) {
+  #table-users thead {
+      display: none;
+  }
+
+  #table-users tbody tr {
+      display: block;
+      margin-bottom: 10px;
+      padding-bottom: 10px;
+  }
+
+  #table-users td {
+      display: block;
+      width: 100%;
+      box-sizing: border-box;
+      padding: 10px;
+      border: none;
+      text-align: right;
+  }
+
+  #table-users td:before {
+      content: attr(data-label);
+      font-weight: bold;
+      display: block;
+      margin-bottom: 5px;
+  }
+
+  
+  #table-users tbody tr td:first-child:before {
+      content: 'ID: ';
+  }
+
+  #table-users tbody tr td:nth-child(2):before {
+      content: 'Name: ';
+  }
+
+  #table-users tbody tr td:nth-child(3):before {
+      content: 'Login: ';
+  }
+
+  #table-users tbody tr td:nth-child(4):before {
+      content: 'Email: ';
+  }
+
+  #table-users tbody tr td:nth-child(5):before {
+      content: 'Profile: ';
+  }
+
+  #table-users tbody tr td:nth-child(6):before {
+      content: 'Total Contacts: ';
+  }
+
+  #table-users tbody tr td:nth-child(7):before {
+      content: 'Registration Date: ';
+  }
+
+  #table-users tbody tr td:nth-child(8):before {
+      content: 'Modification Date: ';
+  }
+
+  .fade-in {
+      display: block;
+  }
+
+  .btn-total-contacts {
+      width: 100%;
+  }
+}
+
+
+#modalUserContacts .modal-dialog {
+  max-width: 95%;
+}
+
+#table-users th, #table-users td {
+  padding: 8px;
+  text-align: center; 
+  vertical-align: middle; 
+  border: 1px solid #ddd;
+}
+
+
+@media (max-width: 768px) {
+  #table-users thead {
+      display: none;
+  }
+
+  #table-users tbody tr {
+      display: block;
+      margin-bottom: 10px;
+      padding-bottom: 10px;
+  }
+
+  #table-users td {
+      display: block;
+      width: 100%;
+      box-sizing: border-box;
+      padding: 10px;
+      border: none;
+      text-align: center; 
+  }
+
+  #table-users td:before {
+      content: attr(data-label);
+      font-weight: bold;
+      display: block;
+      margin-bottom: 5px;
+      text-align: center; 
+  }
+}
+
+
+#modalUserContacts .modal-dialog {
+  max-width: 95%;
+}
+
+#table-users th {
+  background-color: #f4f4f4; 
+  color: #333; 
+  font-weight: bold;
+  text-transform: uppercase; 
+  padding: 12px;
+  border: 1px solid #ddd;
+}
+
+
+#table-users tr:nth-child(even) {
+  background-color: #fafafa; 
+}
+
+#table-users tr:hover {
+  background-color: #f0f8ff; 
+}
+
+
+#table-users td {
+  padding: 10px;
+  text-align: center;
+  border: 1px solid #ddd;
+  font-size: 0.95em; 
+}
+
+
+#table-users {
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  overflow: hidden; 
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); 
+  margin-top: 20px;
+}
+
+
+.table-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 20px;
+}
+
+
+.btn-total-contacts {
+  background-color: #258cfb; 
+  color: white;
+  border: none;
+  padding: 8px 16px;
+  font-size: 0.9em;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+.btn-total-contacts:hover {
+  background-color: #2069c8;
+}
+
+
+.text-center {
+  text-align: center;
+}
+
+
+#table-contacts {
+  width: 100%;
+  overflow-x: auto; 
+  border-collapse: collapse;
+  margin-top: 20px;
+}
+
+#table-contacts th, #table-contacts td {
+  padding: 8px;
+  text-align: left;
+  border: 1px solid #ddd;
+}
+
+
+@media (max-width: 768px) {
+  #table-contacts thead {
+      display: none;
+  }
+
+  #table-contacts tbody tr {
+      display: block;
+      margin-bottom: 10px;
+      padding-bottom: 10px;
+  }
+
+  #table-contacts td {
+      display: block;
+      width: 100%;
+      box-sizing: border-box;
+      padding: 10px;
+      border: none;
+      text-align: right;
+  }
+
+  #table-contacts td:before {
+      content: attr(data-label);
+      font-weight: bold;
+      display: block;
+      margin-bottom: 5px;
+  }
+
+  
+  #table-contacts tbody tr td:first-child:before {
+      content: 'ID: ';
+  }
+
+  #table-contacts tbody tr td:nth-child(2):before {
+      content: 'Name: ';
+  }
+
+  #table-contacts tbody tr td:nth-child(3):before {
+      content: 'Phone: ';
+  }
+
+  #table-contacts tbody tr td:nth-child(4):before {
+      content: 'Email: ';
+  }
+
+  
+
+  #table-contacts tbody tr td:nth-child(6):before {
+      content: 'Registration Date: ';
+  }
+
+  #table-contacts tbody tr td:nth-child(7):before {
+      content: 'Modification Date: ';
+  }
+
+  .fade-in {
+      display: block;
+  }
+
+  .btn-total-contacts {
+      width: 100%;
+  }
+}
+
+
+#modalContactList .modal-dialog {
+  max-width: 95%;
+}
+
+
+#table-contacts th, #table-contacts td {
+  padding: 8px;
+  text-align: center;
+  vertical-align: middle; 
+  border: 1px solid #ddd;
+}
+
+
+@media (max-width: 768px) {
+  #table-contacts thead {
+      display: none;
+  }
+
+  #table-contacts tbody tr {
+      display: block;
+      margin-bottom: 10px;
+      padding-bottom: 10px;
+  }
+
+  #table-contacts td {
+      display: block;
+      width: 100%;
+      box-sizing: border-box;
+      padding: 10px;
+      border: none;
+      text-align: center; 
+  }
+
+  #table-contacts td:before {
+      content: attr(data-label);
+      font-weight: bold;
+      display: block;
+      margin-bottom: 5px;
+      text-align: center; 
+  }
+}
+
+
+#modalContactList .modal-dialog {
+  max-width: 95%;
+}
+
+
+#table-contacts th {
+  background-color: #f4f4f4; 
+  color: #333; 
+  font-weight: bold;
+  text-transform: uppercase; 
+  padding: 12px;
+  border: 1px solid #ddd;
+}
+
+
+#table-contacts tr:nth-child(even) {
+  background-color: #fafafa; 
+}
+
+#table-contacts tr:hover {
+  background-color: #f0f8ff; 
+}
+
+
+#table-contacts td {
+  padding: 10px;
+  text-align: center;
+  border: 1px solid #ddd;
+  font-size: 0.95em; 
+}
+
+
+#table-contacts {
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  overflow: hidden; 
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); 
+  margin-top: 20px;
+}
+
+
+.table-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 20px;
+}
+
+
+.btn-total-contacts {
+  background-color: #258cfb; 
+  color: white;
+  border: none;
+  padding: 8px 16px;
+  font-size: 0.9em;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+.btn-total-contacts:hover {
+  background-color: #2069c8; 
+}
+#table-users td:last-child {
+  display: flex;
+  flex-direction: column; 
+  justify-content: center; 
+  align-items: center; 
+  gap: 10px; 
+}
+
+#table-users .btn-edit,
+#table-users .btn-delete {
+  background-color: #258cfb; 
+  color: white;
+  border: none;
+  padding: 8px 16px;
+  font-size: 0.9em;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+#table-users .btn-edit:hover {
+  background-color: #2069c8; 
+}
+
+#table-users .btn-delete {
+  background-color: #e74c3c; 
+}
+
+#table-users .btn-delete:hover {
+  background-color: #c0392b; 
+}
+#table-contacts_info, #table-users_info {
+  display: flex;
+  align-items: center; 
+  gap: 10px; 
+}
+
+#table-contacts_length, #table-users_length {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+#table-contacts_filter, #table-users_filter {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+#table-contacts_filter label, #table-users_filter label {
+  margin: 0;
+}
+
+#table-contacts_length select, #table-users_length select {
+  padding: 5px;
+  font-size: 0.9em;
+}
+
+#table-contacts_info .dataTables_info, #table-users_info .dataTables_info {
+  margin-left: 10px;
+  font-size: 0.9em;
+}
+
+.text-dark {
+  color: #333; 
+}
+
+.navbar-collapse {
+  display: flex;
+  justify-content: space-between; 
+  align-items: center; 
+}
+
+.nav-link {
+  padding: 10px 15px; 
+  color: #333; 
+  transition: all 0.3s ease; 
+  font-size: 0.95em; 
+}
+
+.nav-link:hover {
+  background-color: #f0f8ff; 
+  color: #000; 
+}
+
+.navbar-toggler-icon {
+  background-image: url('data:image/svg+xml;...'); 
+}
+
+#exit-link, #change-password-link {
+  margin-left: 10px; 
+}
+
+#exit-link {
+  color: #d33; 
+  float: right; 
+}
+
+#exit-link:hover {
+  color: #a00; 
+}
+
+#change-password-link {
+  color: #258cfb; 
+  float: right; 
+}
+
+#change-password-link:hover {
+  color: #1a6ab2; 
+}
+
+
+.nav-item {
+  margin-right: 15px; 
+}
+
+.nav-item .nav-link {
+  text-align: left; 
+}
+.icon {
+  width: 16px; 
+  height: 16px; 
+  margin-right: 8px; 
+  vertical-align: middle; 
+}
+
+.navbar-nav {
+  display: flex; 
+  align-items: center; 
+}
+
+.nav-item {
+  display: flex;
+  align-items: center;
+}
+
+.nav-link {
+  display: flex;
+  align-items: center;
+  text-decoration: none;
+  color: #000; 
+}
+
+.nav-link img.icon {
+  margin-right: 4px; 
+}
+
+.nav-link span {
+  white-space: nowrap; 
+}
+
+.nav-link span.icon-text {
+  font-size: 14px; 
+}
