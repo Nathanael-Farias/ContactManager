@@ -91,7 +91,7 @@ namespace AuthSystem.Controllers
         }
 
 
-                                [HttpGet("delete/{id}")]
+        [HttpGet("delete/{id}")]
         public async Task<IActionResult> Delete(int id)
         {
             var contact = await _contactRepository.GetContactByIdAsync(id);
@@ -101,28 +101,27 @@ namespace AuthSystem.Controllers
                 return NotFound();
             }
 
-            
             ViewData["Contact"] = contact;
             return View(contact);
         }
 
         [HttpPost("delete/{id}")]
-                public async Task<IActionResult> DeleteConfirm(int id)
-                {
-                    var contact = await _contactRepository.GetContactByIdAsync(id);
-                    if (contact == null)
-                    {
-                        return NotFound();
-                    }
+        public async Task<IActionResult> DeleteConfirm(int id)
+        {
+            var contact = await _contactRepository.GetContactByIdAsync(id);
+            if (contact == null)
+            {
+                TempData["ErrorMessage"] = "Contact not found.";
+                return RedirectToAction("Index");
+            }
 
-                    await _contactRepository.DeleteContactAsync(id);
+            await _contactRepository.DeleteContactAsync(id);
 
-                    
-                    TempData["SuccessMessage"] = "Contato deletado com sucesso!";
+            TempData["SuccessMessage"] = "Contact deleted.";
+            
+            return RedirectToAction("Index");
+        }
 
-                    
-                    return RedirectToAction("Index");
-                }
     }
 }
 
