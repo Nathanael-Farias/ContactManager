@@ -1,6 +1,10 @@
 using Microsoft.EntityFrameworkCore;
 using AuthSystem.Models;
 using AuthSystem.Data;
+using System.Collections.Generic;
+using System.Linq;
+using System.Threading.Tasks;
+using System;
 
 namespace AuthSystem.Repository
 {
@@ -44,12 +48,23 @@ namespace AuthSystem.Repository
             return await _context.Contacts.FindAsync(id);
         }
 
+       public async Task<IEnumerable<ContactModel>> GetContactsByUserIdAsync(int userId)
+        {
+            
+            var contacts = await _context.Contacts
+                                    .Where(c => c.UserId == userId)
+                                    .ToListAsync();
+            
+            
+            return contacts;
+        }
+
+
         public async Task<ContactModel> UpdateContactAsync(ContactModel contact)
         {
             _context.Contacts.Update(contact);
             await _context.SaveChangesAsync();
             return contact;
         }
-        
     }
 }
