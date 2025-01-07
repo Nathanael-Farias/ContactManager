@@ -37,14 +37,12 @@
                     <td>
                         <a asp-controller="contact" asp-action="Edit" asp-route-id="@contact.Id" class="btn btn-primary btn-sm">Edit</a>
                         <button class="btn btn-danger btn-sm delete-button" data-id="@contact.Id" data-name="@contact.Name">Delete</button>
-                        
                     </td>
                 </tr>
             }
         </tbody>
     </table>
 </div>
-
 
 <style>
     #contactListTitle {
@@ -54,40 +52,31 @@
     }
 </style>
 
-
 <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
-
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
 <script>
     $(document).ready(function () {
-        
-        $("#contactListTitle").hide().fadeIn(1000).css('font-size', '2.5em'); 
-
+        $("#contactListTitle").hide().fadeIn(1000).css('font-size', '2.5em');
         $(".btn-primary").hide().fadeIn(1000).css('font-size', '1em'); 
 
-        const deleteButtons = document.querySelectorAll(".delete-button");
+        $(".delete-button").click(function () {
+            const contactId = $(this).data("id");
+            const contactName = $(this).data("name");
 
-        deleteButtons.forEach(button => {
-            button.addEventListener("click", (e) => {
-                const contactId = button.getAttribute("data-id");
-                const contactName = button.getAttribute("data-name");
-
-                Swal.fire({
-                    title: 'Are you sure?',
-                    text: `Do you really want to delete "${contactName}"?`,
-                    icon: 'warning',
-                    showCancelButton: true,
-                    confirmButtonText: 'Yes, delete it!',
-                    cancelButtonText: 'Cancel',
-                    reverseButtons: true
-                }).then((result) => {
-                    if (result.isConfirmed) {
-                        window.location.href = `/contact/delete/${contactId}`;
-                    }
-                });
+            Swal.fire({
+                title: 'Are you sure?',
+                text: `Do you really want to delete "${contactName}"?`,
+                icon: 'warning',
+                showCancelButton: true,
+                confirmButtonText: 'Yes, delete it!',
+                cancelButtonText: 'Cancel',
+                reverseButtons: true
+            }).then((result) => {
+                if (result.isConfirmed) {
+                    window.location.href = `/contact/delete/${contactId}`;
+                }
             });
         });
     });
-
-    
 </script>
