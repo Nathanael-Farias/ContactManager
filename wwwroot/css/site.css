@@ -35,8 +35,6 @@ body {
   margin-left: auto;
 }
 
-
-
 .display-4 {
   font-size: 2.5rem; 
   font-weight: bold; 
@@ -54,8 +52,6 @@ body {
       font-size: 1.5rem; 
   }
 }
-
-
 
 .d-flex {
   display: flex;
@@ -97,7 +93,6 @@ button[type="submit"], a {
   margin-bottom: 10px; 
   display: block; 
 }
-
 
 @media (max-width: 768px) {
   .text-center {
@@ -146,11 +141,9 @@ button[type="submit"], a {
   }
 }
 
-
 .text-center {
   text-align: center;
 }
-
 
 #table-users {
   width: 100%;
@@ -164,7 +157,6 @@ button[type="submit"], a {
   text-align: left;
   border: 1px solid #ddd;
 }
-
 
 @media (max-width: 768px) {
   #table-users thead {
@@ -193,7 +185,6 @@ button[type="submit"], a {
       margin-bottom: 5px;
   }
 
-  
   #table-users tbody tr td:first-child:before {
       content: 'ID: ';
   }
@@ -235,7 +226,6 @@ button[type="submit"], a {
   }
 }
 
-
 #modalUserContacts .modal-dialog {
   max-width: 95%;
 }
@@ -246,7 +236,6 @@ button[type="submit"], a {
   vertical-align: middle; 
   border: 1px solid #ddd;
 }
-
 
 @media (max-width: 768px) {
   #table-users thead {
@@ -277,7 +266,6 @@ button[type="submit"], a {
   }
 }
 
-
 #modalUserContacts .modal-dialog {
   max-width: 95%;
 }
@@ -291,7 +279,6 @@ button[type="submit"], a {
   border: 1px solid #ddd;
 }
 
-
 #table-users tr:nth-child(even) {
   background-color: #fafafa; 
 }
@@ -300,14 +287,12 @@ button[type="submit"], a {
   background-color: #f0f8ff; 
 }
 
-
 #table-users td {
   padding: 10px;
   text-align: center;
   border: 1px solid #ddd;
   font-size: 0.95em; 
 }
-
 
 #table-users {
   border: 1px solid #ddd;
@@ -317,14 +302,12 @@ button[type="submit"], a {
   margin-top: 20px;
 }
 
-
 .table-container {
   display: flex;
   justify-content: center;
   align-items: center;
   padding: 20px;
 }
-
 
 .btn-total-contacts {
   background-color: #258cfb; 
@@ -341,11 +324,9 @@ button[type="submit"], a {
   background-color: #2069c8;
 }
 
-
 .text-center {
   text-align: center;
 }
-
 
 #table-contacts {
   width: 100%;
@@ -359,7 +340,6 @@ button[type="submit"], a {
   text-align: left;
   border: 1px solid #ddd;
 }
-
 
 @media (max-width: 768px) {
   #table-contacts thead {
@@ -388,7 +368,6 @@ button[type="submit"], a {
       margin-bottom: 5px;
   }
 
-  
   #table-contacts tbody tr td:first-child:before {
       content: 'ID: ';
   }
@@ -404,8 +383,6 @@ button[type="submit"], a {
   #table-contacts tbody tr td:nth-child(4):before {
       content: 'Email: ';
   }
-
-  
 
   #table-contacts tbody tr td:nth-child(6):before {
       content: 'Registration Date: ';
@@ -424,11 +401,9 @@ button[type="submit"], a {
   }
 }
 
-
 #modalContactList .modal-dialog {
   max-width: 95%;
 }
-
 
 #table-contacts th, #table-contacts td {
   padding: 8px;
@@ -436,7 +411,6 @@ button[type="submit"], a {
   vertical-align: middle; 
   border: 1px solid #ddd;
 }
-
 
 @media (max-width: 768px) {
   #table-contacts thead {
@@ -466,183 +440,6 @@ button[type="submit"], a {
       text-align: center; 
   }
 }
-
-
-#modalContactList .modal-dialog {
-  max-width: 95%;
-}
-
-
-#table-contacts th {
-  background-color: #f4f4f4; 
-  color: #333; 
-  font-weight: bold;
-  text-transform: uppercase; 
-  padding: 12px;
-  border: 1px solid #ddd;
-}
-
-
-#table-contacts tr:nth-child(even) {
-  background-color: #fafafa; 
-}
-
-#table-contacts tr:hover {
-  background-color: #f0f8ff; 
-}
-
-
-#table-contacts td {
-  padding: 10px;
-  text-align: center;
-  border: 1px solid #ddd;
-  font-size: 0.95em; 
-}
-
-
-#table-contacts {
-  border: 1px solid #ddd;
-  border-radius: 8px;
-  overflow: hidden; 
-  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); 
-  margin-top: 20px;
-}
-
-
-.table-container {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  padding: 20px;
-}
-
-
-.btn-total-contacts {
-  background-color: #258cfb; 
-  color: white;
-  border: none;
-  padding: 8px 16px;
-  font-size: 0.9em;
-  border-radius: 4px;
-  cursor: pointer;
-  transition: background-color 0.3s;
-}
-
-.btn-total-contacts:hover {
-  background-color: #2069c8; 
-}
-#table-users td:last-child {
-  display: flex;
-  flex-direction: column; 
-  justify-content: center; 
-  align-items: center; 
-  gap: 10px; 
-}
-
-#table-users .btn-edit,
-#table-users .btn-delete {
-  background-color: #258cfb; 
-  color: white;
-  border: none;
-  padding: 8px 16px;
-  font-size: 0.9em;
-  border-radius: 4px;
-  cursor: pointer;
-  transition: background-color 0.3s;
-}
-
-#table-users .btn-edit:hover {
-  background-color: #2069c8; 
-}
-
-#table-users .btn-delete {
-  background-color: #e74c3c; 
-}
-
-#table-users .btn-delete:hover {
-  background-color: #c0392b; 
-}
-#table-contacts_info, #table-users_info {
-  display: flex;
-  align-items: center; 
-  gap: 10px; 
-}
-
-#table-contacts_length, #table-users_length {
-  display: flex;
-  align-items: center;
-  gap: 10px;
-}
-
-#table-contacts_filter, #table-users_filter {
-  display: flex;
-  align-items: center;
-  gap: 10px;
-}
-
-#table-contacts_filter label, #table-users_filter label {
-  margin: 0;
-}
-
-#table-contacts_length select, #table-users_length select {
-  padding: 5px;
-  font-size: 0.9em;
-}
-
-#table-contacts_info .dataTables_info, #table-users_info .dataTables_info {
-  margin-left: 10px;
-  font-size: 0.9em;
-}
-
-.text-dark {
-  color: #333; 
-}
-
-.navbar-collapse {
-  display: flex;
-  justify-content: space-between; 
-  align-items: center; 
-}
-
-.nav-link {
-  padding: 10px 15px; 
-  color: #333; 
-  transition: all 0.3s ease; 
-  font-size: 0.95em; 
-}
-
-.nav-link:hover {
-  background-color: #f0f8ff; 
-  color: #000; 
-}
-
-.navbar-toggler-icon {
-  background-image: url('data:image/svg+xml;...'); 
-}
-
-#exit-link, #change-password-link {
-  margin-left: 10px; 
-}
-
-#exit-link {
-  color: #d33; 
-  float: right; 
-}
-
-#exit-link:hover {
-  color: #a00; 
-}
-
-#change-password-link {
-  color: #258cfb; 
-  float: right; 
-}
-
-#change-password-link:hover {
-  color: #1a6ab2; 
-}
-
-
 .nav-item {
   margin-right: 15px; 
 }

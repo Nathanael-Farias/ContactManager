@@ -23,6 +23,7 @@ appsettings.Development.json
 # Pastas de pacotes
 wwwroot/lib/
 
+
 # Arquivos temporários
 *.tmp
 *.temp
