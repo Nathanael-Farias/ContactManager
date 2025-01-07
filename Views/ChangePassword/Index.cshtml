@@ -27,68 +27,53 @@
 
 @section Scripts {
     <script>
+        const form = document.getElementById("changePasswordForm");
+        const currentPasswordInput = document.getElementById("CurrentPassword");
+        const newPasswordInput = document.getElementById("NewPassword");
+        const confirmPasswordInput = document.getElementById("ConfirmPassword");
+
+        const showAlert = (icon, title, text) => {
+            Swal.fire({ icon, title, text });
+        };
+
+        const handleFormSubmission = (e) => {
+            const currentPassword = currentPasswordInput.value.trim();
+            const newPassword = newPasswordInput.value.trim();
+            const confirmPassword = confirmPasswordInput.value.trim();
+
+            if (!currentPassword || !newPassword || !confirmPassword) {
+                showAlert("error", "Oops...", "Please fill all required fields!");
+                e.preventDefault();
+                return;
+            }
+
+            if (newPassword !== confirmPassword) {
+                showAlert("error", "Oops...", "New password and confirmation do not match!");
+                e.preventDefault();
+                return;
+            }
+
+            e.preventDefault();
+            showAlert("success", "Password Updated", "Your password has been successfully changed.")
+                .then((result) => {
+                    if (result.isConfirmed) form.submit();
+                });
+        };
+
+        form.addEventListener("submit", handleFormSubmission);
+
         @if (TempData["SuccessMessage"] != null)
         {
             <text>
-            Swal.fire({
-                icon: "success",
-                title: "Success!",
-                text: "@TempData["SuccessMessage"]"
-            });
+            showAlert("success", "Success!", "@TempData["SuccessMessage"]");
             </text>
         }
 
         @if (TempData["ErrorMessage"] != null)
         {
             <text>
-            Swal.fire({
-                icon: "error",
-                title: "Error!",
-                text: "@TempData["ErrorMessage"]"
-            });
+            showAlert("error", "Error!", "@TempData["ErrorMessage"]");
             </text>
         }
-
-        let form = document.getElementById("changePasswordForm");
-        let currentPasswordInput = document.getElementById("CurrentPassword");
-        let newPasswordInput = document.getElementById("NewPassword");
-        let confirmPasswordInput = document.getElementById("ConfirmPassword");
-
-        form.addEventListener("submit", (e) => {
-            let currentPassword = currentPasswordInput.value.trim();
-            let newPassword = newPasswordInput.value.trim();
-            let confirmPassword = confirmPasswordInput.value.trim();
-
-            if (!currentPassword || !newPassword || !confirmPassword) {
-                Swal.fire({
-                    icon: "error",
-                    title: "Oops...",
-                    text: "Please fill all required fields!"
-                });
-                e.preventDefault();
-                return;
-            }
-
-            if (newPassword !== confirmPassword) {
-                Swal.fire({
-                    icon: "error",
-                    title: "Oops...",
-                    text: "New password and confirmation do not match!"
-                });
-                e.preventDefault();
-                return;
-            }
-
-            e.preventDefault();
-            Swal.fire({
-                icon: "success",
-                title: "Password Updated",
-                text: "Your password has been successfully changed."
-            }).then((result) => {
-                if (result.isConfirmed) {
-                    form.submit();
-                }
-            });
-        });
     </script>
 }
