@@ -1,6 +1,49 @@
-/appsettings.Development.json
-/appsettings.json
-/bin
-/obj
+# Sistema operacional
+.DS_Store
+Thumbs.db
 
+# Arquivos gerados pelo build
+bin/
+obj/
 
+# Configurações locais de usuários
+.vscode/
+.idea/
+*.user
+*.suo
+*.userosscache
+*.sln.docstates
+
+# Configurações de ambiente
+.env
+*.env
+appsettings.json
+appsettings.Development.json
+
+# Pastas de pacotes
+wwwroot/lib/
+
+# Arquivos temporários
+*.tmp
+*.temp
+*.bak
+*.swp
+
+# Arquivos de cache
+node_modules/
+*.cache
+
+# Logs
+*.log
+
+# Configurações do sistema de versionamento
+.git/
+
+# Arquivos de backup e lock
+*.lock
+*.pid
+*.seed
+*.pid.lock
+
+# Configurações do sistema de compilação
+launchSettings.json
