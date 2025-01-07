@@ -1,13 +1,9 @@
 @model LoginModel
-
 @{
     Layout = "_LayoutUnlogged";
     ViewData["Title"] = "Login";
     
 }
-
-
-
 <div class="container mt-5">
     <div class="row justify-content-center">
         <div class="col-md-6">
@@ -27,15 +23,12 @@
                             <input type="checkbox" id="showPassword" onclick="togglePassword()"> Show Password
                         </div>
                         <button type="button" class="btn btn-primary w-100" id="login-button">Log In</button>
-
                         @if (TempData.ContainsKey("ErrorMessage"))
                         {
                             <div class="alert alert-danger mt-3" role="alert">
                                 @TempData["ErrorMessage"]
                             </div>
                         }
-
-                        
                         <a href="#" class="btn btn-link w-100 mt-3" onclick="confirmResetPassword()">Reset my password</a>
                     </form>
                 </div>
@@ -48,7 +41,6 @@
 <script>
     document.getElementById('login-button').addEventListener('click', function (e) {
         e.preventDefault();
-
         const form = document.getElementById('login-form');
         const username = document.getElementById('username').value;
         const password = document.getElementById('password').value;
@@ -65,7 +57,6 @@
 
         form.submit();
     });
-
     if (TempData.ContainsKey("ErrorMessage")) {
         Swal.fire({
             icon: 'error',
@@ -74,7 +65,6 @@
             confirmButtonText: 'OK'
         });
     }
-
     function togglePassword() {
         var passwordField = document.getElementById("password");
         var showPasswordCheckbox = document.getElementById("showPassword");
@@ -84,7 +74,6 @@
             passwordField.type = "password";
         }
     }
-
     function confirmResetPassword() {
         Swal.fire({
             title: 'Are you sure?',
