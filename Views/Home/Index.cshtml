@@ -6,25 +6,21 @@
 
 <div class="text-center" style="padding-top: 100px;">
     <h1 id="welcomeText" class="display-4">Welcome</h1>
-    <span></span>
-    <p></p>
 </div>
 
-
 <link rel="stylesheet" href="css/site.css">
-
 
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 <script>
     $(document).ready(function () {
         var text = $("#welcomeText").text().split('');
-        $("#welcomeText").text('');
-        text.forEach(function (letter, index) {
+        $("#welcomeText").empty();
+        text.forEach(function (letter) {
             $("<span>").text(letter).appendTo("#welcomeText");
         });
 
         $("#welcomeText span").hide().each(function (index) {
-            $(this).delay(index * 100).fadeIn(200).css('font-size', '3em'); 
+            $(this).delay(index * 100).fadeIn(200).css('font-size', '3em');
         });
     });
 </script>
